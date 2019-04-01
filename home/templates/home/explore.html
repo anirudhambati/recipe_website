@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>Material Design Bootstrap</title>
+  {% load static from staticfiles %}
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
@@ -16,7 +17,7 @@
 
 
 
-  <link href="explore.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'home/explore.css' %}"/>
 
   <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/metropolis" type="text/css"/>
 
