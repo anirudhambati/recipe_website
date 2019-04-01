@@ -4,4 +4,6 @@ app_name='home'
 
 urlpatterns = [
     path('', views.explore),
+    path('recipe', views.recipe),
+
 ]

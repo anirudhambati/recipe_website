@@ -41,7 +41,20 @@ a .liked{
 	margin-bottom:120px
 }
 
-
+.love-icon{
+	position: relative;
+	display: block;
+	text-align:center;
+	width:50px;
+	height: 50px;
+	line-height: 50px;
+	box-shadow: 0 0 0 2px red;
+	border-radius: 50%;
+	font-size: 20px;
+	color:red;
+	transition: .5s;
+	margin-top: -25px;
+}
 
 
 
