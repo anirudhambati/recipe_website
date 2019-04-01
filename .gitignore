@@ -1,0 +1,6 @@
+venv
+*.pyc
+*.xml
+db.sqlite3
+*.sqlite3
+.git
