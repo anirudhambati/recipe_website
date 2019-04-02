@@ -24,7 +24,8 @@ def explore(request):
 def recipe(request):
     return render( request, 'home/recipe.html')
 
-
+def base(request):
+    return render(request, 'home/base.html')
 
 def register(request):
     return render(request,'register/login.html')
