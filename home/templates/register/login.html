@@ -59,8 +59,18 @@ and your password for join.
 	</form>
 </div>
 
-
-
+<script>
+var flag = {{flag}};
+$(document).ready(function(){
+  if(flag == 1){
+  	$(".signIn").addClass("active-dx");
+  	$(".signUp").addClass("inactive-sx");
+  	$(".signUp").removeClass("active-sx");
+  	$(".signIn").removeClass("inactive-dx");
+  	flag =0;
+  }
+});
+</script>
 
 <!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

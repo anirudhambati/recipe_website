@@ -13,4 +13,5 @@ $(".back").click(function(){
 	$(".signIn").removeClass("active-dx");
 	$(".signUp").removeClass("inactive-sx");
 });
+
 });

@@ -72,10 +72,12 @@ def registered(request):
 
     return HttpResponse("hii")
 
+def home(request):
+    return render(request, 'home/index.html')
 
 def login(request):
     print("####################")
-
+    flag = 0
     email=request.POST['email']
     password=request.POST['password']
     dynamoDB=boto3.resource('dynamodb')
@@ -84,6 +86,7 @@ def login(request):
     response=dynamoTable.scan(FilterExpression=fe)
     if (response['Items']==[]):
         res = 'You have not registered yet. Please register first to continue'
+        flag = 1
         print("register first")
     else:
         print(response['Items'][0]['password'])
@@ -93,4 +96,5 @@ def login(request):
         else:
             print("Got you bitch")
             res = 'The password you have entered is wrong'
-    return render(request, 'register/login.html', {'res':res})
+            flag = 1
+    return render(request, 'register/login.html', {'res':res, 'flag':flag})
