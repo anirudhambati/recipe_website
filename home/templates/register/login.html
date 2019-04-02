@@ -29,7 +29,6 @@
 </head>
 
 <body>
-
 <div class="container">
 	<form class="signUp" method="POST" action="registered" >
     {% csrf_token %}
@@ -56,15 +55,9 @@ and your password for join.
 		<!-- <div class="g-recaptcha" data-sitekey="key" style="margin-left:2px"></div> -->
 		<button class="form-btn sx back" type="button">Back</button>
 		<button class="form-btn dx" type="submit">Log In</button>
+    <small style = "color: #cc0033;"> *{{ res }} </small>
 	</form>
 </div>
-
-
-
-
-
-
-
 
 
 

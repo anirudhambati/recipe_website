@@ -1,4 +1,4 @@
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import render,HttpResponse,redirect
 import boto3
 from boto3.dynamodb.conditions import Key, Attr
 
@@ -82,11 +82,14 @@ def login(request):
     fe = Attr('email').eq(email)
     response=dynamoTable.scan(FilterExpression=fe)
     if (response['Items']==[]):
+        res = 'You have not registered yet. Please register first to continue'
         print("register first")
     else:
         print(response['Items'][0]['password'])
-        if(response['Items'][0]['password']==password):
+        if(response['Items'][0]['password'] == password):
+            res = 'Log in now'
             print('You are ready to go in')
         else:
             print("Got you bitch")
-    return HttpResponse('hellooooo')
+            res = 'The password you have entered is wrong'
+    return render(request, 'register/login.html', {'res':res})
