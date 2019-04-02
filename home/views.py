@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,HttpResponse
 import boto3
 from boto3.dynamodb.conditions import Key, Attr
 
@@ -10,13 +10,15 @@ def explore(request):
     fe = Attr('Region').contains('Indian')
     names=[]
     imglinks=[]
+    rids=[]
     response = dynamoTable.scan(
         FilterExpression=fe,
         )
     for i in response['Items']:
         names+=[i['name']]
         imglinks+=[i['Imglink']]
-    return render(request, 'home/explore.html',{'data':zip(names,imglinks)})
+        rids+=[i['R_id']]
+    return render(request, 'home/explore.html',{'data':zip(names,imglinks,rids)})
 
 
 def recipe(request):
@@ -67,8 +69,24 @@ def registered(request):
         # sno=len(response['Items'])+1
         print('email already exists')
 
-
-
-
-
     return HttpResponse("hii")
+
+
+def login(request):
+    print("####################")
+
+    email=request.POST['email']
+    password=request.POST['password']
+    dynamoDB=boto3.resource('dynamodb')
+    dynamoTable=dynamoDB.Table('Users')
+    fe = Attr('email').eq(email)
+    response=dynamoTable.scan(FilterExpression=fe)
+    if (response['Items']==[]):
+        print("register first")
+    else:
+        print(response['Items'][0]['password'])
+        if(response['Items'][0]['password']==password):
+            print('You are ready to go in')
+        else:
+            print("Got you bitch")
+    return HttpResponse('hellooooo')

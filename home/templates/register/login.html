@@ -46,12 +46,14 @@ and your password for join.
 		<button class="form-btn sx log-in" type="button">Log In</button>
 		<button class="form-btn dx" type="submit">Sign Up</button>
 	</form>
-	<form class="signIn">
+	<form class="signIn" method="POST" action="login">
+    {% csrf_token %}
+
 		<h3>Login</h3>
 		<img src="register/man.png" class="login-img">
-		<input type="email" placeholder="Enter E-Mail" autocomplete='off' required />
-		<input type="password" placeholder="Enter Password" required />
-		<div class="g-recaptcha" data-sitekey="key" style="margin-left:2px"></div>
+		<input type="email" placeholder="Enter E-Mail" autocomplete='off' name="email" required />
+		<input type="password" placeholder="Enter Password" name="password" required />
+		<!-- <div class="g-recaptcha" data-sitekey="key" style="margin-left:2px"></div> -->
 		<button class="form-btn sx back" type="button">Back</button>
 		<button class="form-btn dx" type="submit">Log In</button>
 	</form>
