@@ -49,7 +49,7 @@ and your password for join.
     {% csrf_token %}
 
 		<h3>Login</h3>
-		<img src="register/man.png" class="login-img">
+		<img src="{% static 'register/man.png' %}" class="login-img">
 		<input type="email" placeholder="Enter E-Mail" autocomplete='off' name="email" required />
 		<input type="password" placeholder="Enter Password" name="password" required />
 		<!-- <div class="g-recaptcha" data-sitekey="key" style="margin-left:2px"></div> -->

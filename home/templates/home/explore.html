@@ -70,111 +70,36 @@
 <div class="container sec-card">
 
   <h2 class="text-center text-heading">QUICK MEALS FOR KIDS</h2>
-      {% for name,link,id in data %}
-  <div class="row" style="width:25%,height:150px">
-    <div class="card-deck" >
-      <!-- first Card -->
 
-      <div class="card">
+  {% for name,link,id in data %}
 
-        <!-- Card image -->
-        <div class="view overlay" style="width:25%,height:150px">
-          <img class="card-img-top" src={{ link }} style="width:25%,height:150px" alt="{% static 'home/food.jpg' %}">
-          <a>
-            <div class="mask rgba-white-slight"></div>
-          </a>
-        </div>
-
-        <!-- Button -->
-        <!-- <div class="card-img-overlay"> -->
-
+    <div class="row" style="width:25%,height:150px">
+      <div class="card-deck" >
+        <div class="card">
+          <!-- Card image -->
+          <div class="view overlay" style="width:25%,height:150px">
+            <img class="card-img-top" src={{ link }} style="width:25%,height:150px" onerror="if (this.src != 'error.jpg') this.src = '{% static 'home/food.jpg' %}';">
+            <a>
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
+          <!-- Button -->
+          <!-- <div class="card-img-overlay"> -->
           <a class="btn btn-danger btn-circle btn-floating ml-auto mr-4 lighten-3"  >
             <i class="fa fa-heart"></i>
           </a>
-
-        <!-- </div> -->
-        <!-- Card content -->
-        <div class="card-body  mx-auto p-0">
-          <!-- Title -->
-          <h4 class="card-title mx-auto p-0 txt">{{name}}</h4>
+          <!-- </div> -->
+          <!-- Card content -->
+          <div class="card-body  mx-auto p-0">
+            <!-- Title -->
+            <h4 class="card-title mx-auto p-0 txt">{{name}}</h4>
+          </div>
         </div>
       </div>
-      <!-- / first Card -->
-
-      <!-- second Card -->
-      <!-- <div class="card">
- -->
-        <!-- Card image -->
-        <!-- <div class="view overlay">
-          <img class="card-img-top" src="img/food.jpg" alt="Card image cap">
-          <a>
-            <div class="mask rgba-white-slight"></div>
-          </a>
-        </div> -->
-
-        <!-- Button -->
-        <!-- <button type="button" class="btn btn-danger btn-circle btn-floating ml-auto mr-4 lighten-3">
-          <i class="fa fa-heart"></i>
-        </button> -->
-
-        <!-- Card content -->
-        <!-- <div class="card-body  mx-auto p-0">
- -->
-          <!-- Title -->
-          <!-- <h4 class="card-title txt">Card title</h4>
-
-        </div>
-
-
-      </div> -->
-      <!-- / second Card -->
-
-      <!-- thrid Card -->
-      <!-- <div class="card">
- -->
-        <!-- Card image -->
-        <!-- <div class="view overlay">
-          <img class="card-img-top" src="img/food.jpg" alt="Card image cap">
-          <a>
-            <div class="mask rgba-white-slight"></div>
-          </a>
-        </div>
- -->
-        <!-- Button -->
-
-        <!-- <button type="button" class="btn btn-danger btn-circle btn-floating ml-auto mr-4 lighten-3">
-          <i class="fa fa-heart"></i>
-        </button>
-
-        <div class="card-body mx-auto p-0">
-          <h4 class="card-title txt">Card title</h4>
-        </div>
-      </div> -->
-      <!-- / thrid Card -->
-      <!-- <div class="card">
- -->
-        <!-- Card image -->
-        <!-- <div class="view overlay">
-          <img class="card-img-top" src="img/food.jpg" alt="Card image cap">
-          <a>
-            <div class="mask rgba-white-slight"></div>
-          </a>
-        </div>
- -->
-        <!-- Button -->
-<!--
-        <button type="button" class="btn btn-danger btn-circle btn-floating ml-auto mr-4 lighten-3">
-          <i class="fa fa-heart"></i>
-        </button>
-
-        <div class="card-body  mx-auto p-0">
-          <h4 class="card-title txt">Card title</h4>
-        </div>
-      </div> -->
     </div>
-  </div>
 
   {% endfor %}
+  
 </div>
 
 
