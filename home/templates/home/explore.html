@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Explore</title>
+  <title>Material Design Bootstrap</title>
   {% load static from staticfiles %}
 
   <!-- Font Awesome -->
@@ -25,61 +25,61 @@
 
 <body>
 
-<!--Navbar -->
-<header>
-<nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color">
-    <a class="navbar-brand ml-5" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
-      aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Home
 
-          </a>
-        </li>
-        <li class="nav-item  active">
-          <a class="nav-link" href="#">Explore</a>
-            <span class="sr-only">(current)</span>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">contact us</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">
-            <i class="fas fa-user"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-            <a class="dropdown-item" href="#">My Account</a>
-            <a class="dropdown-item" href="#">Add a Recipe</a>
-            <a class="dropdown-item" href="#">Liked Recipes</a>
-            <a class="dropdown-item" href="#">Shopping list</a>
-            <a class="dropdown-item" href="#">Logout</a>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </nav>
-</header>
-  <!--/.Navbar -->
+<!--Navbar -->
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark " style="background-color: #37703d">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+    aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home
+
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Explore</a>
+        <span class="sr-only">(current)</span>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">contact us</a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          <i class="fas fa-user"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+          <a class="dropdown-item" href="#">My Account</a>
+          <a class="dropdown-item" href="#">Liked recipes</a>
+          <a class="dropdown-item" href="#">Logout</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!--/.Navbar -->
+
 
 <div style="width:100%;height:50px"></div>
 
 <div class="container sec-card">
 
   <h2 class="text-center text-heading">QUICK MEALS FOR KIDS</h2>
-
-  <div class="row">
-    <div class="card-deck">
+      {% for name,link in data %}
+  <div class="row" style="width:25%,height:150px">
+    <div class="card-deck" >
       <!-- first Card -->
-      <div class="card">
+
+      <div class="card" style="width:25%,height:150px">
 
         <!-- Card image -->
-        <div class="view overlay">
-          <img class="card-img-top" src="img/food.jpg" alt="Card image cap">
+        <div class="view overlay" style="width:25%,height:150px">
+          <img class="card-img-top" src={{ link }} style="width:25%,height:150px" alt="{% static 'home/food.jpg' %}">
           <a>
             <div class="mask rgba-white-slight"></div>
           </a>
@@ -88,92 +88,93 @@
         <!-- Button -->
         <!-- <div class="card-img-overlay"> -->
 
-          <!-- <a class="btn btn-danger btn-circle btn-floating ml-auto mr-4 lighten-3"  >
+          <a class="btn btn-danger btn-circle btn-floating ml-auto mr-4 lighten-3"  >
             <i class="fa fa-heart"></i>
-          </a> -->
-          <a href="#" class="love-icon  ml-auto mr-4 "><i class="fa fa-heart"></i></a>
+          </a>
 
         <!-- </div> -->
         <!-- Card content -->
         <div class="card-body  mx-auto p-0">
           <!-- Title -->
-          <a herf="#"><h4 class="card-title mx-auto p-0 txt">Card title</h4></a>
+          <h4 class="card-title mx-auto p-0 txt">{{name}}</h4>
         </div>
       </div>
       <!-- / first Card -->
 
       <!-- second Card -->
-      <div class="card">
-
+      <!-- <div class="card">
+ -->
         <!-- Card image -->
-        <div class="view overlay">
+        <!-- <div class="view overlay">
           <img class="card-img-top" src="img/food.jpg" alt="Card image cap">
           <a>
             <div class="mask rgba-white-slight"></div>
           </a>
-        </div>
+        </div> -->
 
         <!-- Button -->
-        <button type="button" class="btn btn-danger btn-circle btn-floating ml-auto mr-4 lighten-3">
+        <!-- <button type="button" class="btn btn-danger btn-circle btn-floating ml-auto mr-4 lighten-3">
           <i class="fa fa-heart"></i>
-        </button>
+        </button> -->
 
         <!-- Card content -->
-        <div class="card-body  mx-auto p-0">
-
+        <!-- <div class="card-body  mx-auto p-0">
+ -->
           <!-- Title -->
-          <a herf="#"><h4 class="card-title mx-auto p-0 txt">Card title</h4></a>
+          <!-- <h4 class="card-title txt">Card title</h4>
 
         </div>
 
 
-      </div>
+      </div> -->
       <!-- / second Card -->
 
       <!-- thrid Card -->
-      <div class="card">
-
+      <!-- <div class="card">
+ -->
         <!-- Card image -->
-        <div class="view overlay">
+        <!-- <div class="view overlay">
           <img class="card-img-top" src="img/food.jpg" alt="Card image cap">
           <a>
             <div class="mask rgba-white-slight"></div>
           </a>
         </div>
-
+ -->
         <!-- Button -->
 
-        <button type="button" class="btn btn-danger btn-circle btn-floating ml-auto mr-4 lighten-3">
+        <!-- <button type="button" class="btn btn-danger btn-circle btn-floating ml-auto mr-4 lighten-3">
           <i class="fa fa-heart"></i>
         </button>
 
         <div class="card-body mx-auto p-0">
-          <a herf="#"><h4 class="card-title mx-auto p-0 txt">Card title</h4></a>
+          <h4 class="card-title txt">Card title</h4>
         </div>
-      </div>
+      </div> -->
       <!-- / thrid Card -->
-      <div class="card">
-
+      <!-- <div class="card">
+ -->
         <!-- Card image -->
-        <div class="view overlay">
+        <!-- <div class="view overlay">
           <img class="card-img-top" src="img/food.jpg" alt="Card image cap">
           <a>
             <div class="mask rgba-white-slight"></div>
           </a>
         </div>
-
+ -->
         <!-- Button -->
-
+<!--
         <button type="button" class="btn btn-danger btn-circle btn-floating ml-auto mr-4 lighten-3">
           <i class="fa fa-heart"></i>
         </button>
 
         <div class="card-body  mx-auto p-0">
-          <a herf="#"><h4 class="card-title mx-auto p-0 txt">Card title</h4></a>
+          <h4 class="card-title txt">Card title</h4>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
+
+  {% endfor %}
 </div>
 
 
@@ -206,7 +207,7 @@
         <!-- Card content -->
         <div class="card-body  mx-auto p-0">
           <!-- Title -->
-          <a herf="#"><h4 class="card-title mx-auto p-0 txt">Card title</h4></a>
+          <h4 class="card-title mx-auto p-0 txt">Card title</h4>
         </div>
       </div>
       <!-- / first Card -->
@@ -231,7 +232,7 @@
         <div class="card-body  mx-auto p-0">
 
           <!-- Title -->
-          <a herf="#"><h4 class="card-title mx-auto p-0 txt">Card title</h4></a>
+          <h4 class="card-title txt">Card title</h4>
 
         </div>
 
@@ -257,7 +258,7 @@
         </button>
 
         <div class="card-body mx-auto p-0">
-          <a herf="#"><h4 class="card-title mx-auto p-0 txt">Card title</h4></a>
+          <h4 class="card-title txt">Card title</h4>
         </div>
       </div>
       <!-- / thrid Card -->
@@ -278,7 +279,7 @@
         </button>
 
         <div class="card-body  mx-auto p-0">
-          <a herf="#"><h4 class="card-title mx-auto p-0 txt">Card title</h4></a>
+          <h4 class="card-title txt">Card title</h4>
         </div>
       </div>
     </div>
@@ -315,7 +316,7 @@
         <!-- Card content -->
         <div class="card-body  mx-auto p-0">
           <!-- Title -->
-          <a herf="#"><h4 class="card-title mx-auto p-0 txt">Card title</h4></a>
+          <h4 class="card-title mx-auto p-0 txt">Card title</h4>
         </div>
       </div>
       <!-- / first Card -->
@@ -340,7 +341,7 @@
         <div class="card-body  mx-auto p-0">
 
           <!-- Title -->
-          <a herf="#"><h4 class="card-title mx-auto p-0 txt">Card title</h4></a>
+          <h4 class="card-title txt">Card title</h4>
 
         </div>
 
@@ -366,7 +367,7 @@
         </button>
 
         <div class="card-body mx-auto p-0">
-          <a herf="#"><h4 class="card-title mx-auto p-0 txt">Card title</h4></a>
+          <h4 class="card-title txt">Card title</h4>
         </div>
       </div>
       <!-- / thrid Card -->
@@ -388,7 +389,7 @@
 
 
         <div class="card-body  mx-auto p-0">
-          <a herf="#"><h4 class="card-title mx-auto p-0 txt">Card title</h4></a>
+          <h4 class="card-title txt">Card title</h4>
         </div>
       </div>
     </div>
