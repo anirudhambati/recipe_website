@@ -25,7 +25,39 @@ def recipe(request, id):
     # FROM here, details of link descrip, steps, so..so..so..
 
     # TO HERE
-    return render( request, 'home/recipe.html')
+    print(id)
+    print(type(id))
+    dynamoDB=boto3.resource('dynamodb')
+    dynamoTable=dynamoDB.Table('recipe')
+    response = dynamoTable.query(
+    KeyConditionExpression=Key('R_id').eq(int(id))
+    )
+    #data extraction
+
+    print(response['Items'][0]['servings'])
+    print(response['Items'][0]['Maketime'])
+    print(response['Items'][0]['Chefname'])
+    print(response['Items'][0]['ingreditents'])
+
+    servings=response['Items'][0]['servings']
+    ingredients=response['Items'][0]['ingreditents']
+    chefname=response['Items'][0]['Chefname']
+    img=response['Items'][0]['Imglink']
+    maketime=response['Items'][0]['Maketime']
+    region=response['Items'][0]['Region']
+    steps=response['Items'][0]['steps']
+    name=response['Items'][0]['name']
+
+    data = {'servings':servings,
+            'ingredients':ingredients,
+            'chefname':chefname,
+            'img':img,
+            'maketime':maketime,
+            'region':region,
+            'steps':steps,
+            'name':name}
+
+    return render( request, 'home/recipe.html', data)
 
 def base(request):
     return render(request, 'home/base.html')
