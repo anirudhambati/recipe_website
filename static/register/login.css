@@ -30,7 +30,7 @@ form {
 /*
 .signIn{
 	height:475px;
-	
+
 }
 */
 p {
@@ -59,7 +59,7 @@ h3 {
 
 input,
 button{
-	outline: none !important; 
+	outline: none !important;
 }
 
 
@@ -129,19 +129,19 @@ input {
 }
 
 :-moz-placeholder {
-   color: #ffc185;  
+   color: #ffc185;
 	font-family: 'Metropolis';
 	font-weight:100;
 }
 
 ::-moz-placeholder {
-   color: #ffc185;  
+   color: #ffc185;
 	font-family: 'Metropolis';
 	font-weight:100;
 }
 
-:-ms-input-placeholder {  
-   color: #ffc185; 
+:-ms-input-placeholder {
+   color: #ffc185;
 	font-family: 'Metropolis';
 	font-weight:100;
 }
