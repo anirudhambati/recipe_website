@@ -60,6 +60,19 @@
 </div>
 <div class="timeline">
   <div class="container">
+
+    {% for i,j in steps %}
+
+    <div class="row {{i}}" >
+      <div class="col col-6 mr-auto dot">
+        <h2>Step {{ i }}</h2>
+        <p>{{ j }}</p>
+      </div>
+    </div>
+
+    {% endfor %}
+
+<!--
     <div class="row">
       <div class="col col-6 mr-auto dot">
         <h2>Step -1</h2>
@@ -143,12 +156,10 @@
                       <h2>Step -14</h2>
                       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi voluptates sapiente animi? Possimus, commodi. Sunt consequuntur debitis beatae! Eius vel mollitia nostrum ad quam eos totam facilis est eaque illo!</p>
                     </div>
-                </div>
+                </div>-->
   </div>
 </div>
 
-
 <br><br><br><br><br><br><br>
-
 
 {% endblock %}

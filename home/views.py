@@ -22,22 +22,14 @@ def explore(request):
 
 
 def recipe(request, id):
-    # FROM here, details of link descrip, steps, so..so..so..
-
-    # TO HERE
     print(id)
     print(type(id))
     dynamoDB=boto3.resource('dynamodb')
     dynamoTable=dynamoDB.Table('recipe')
     response = dynamoTable.query(
-    KeyConditionExpression=Key('R_id').eq(int(id))
+        KeyConditionExpression=Key('R_id').eq(int(id))
     )
     #data extraction
-
-    print(response['Items'][0]['servings'])
-    print(response['Items'][0]['Maketime'])
-    print(response['Items'][0]['Chefname'])
-    print(response['Items'][0]['ingreditents'])
 
     servings=response['Items'][0]['servings']
     ingredients=response['Items'][0]['ingreditents']
@@ -48,14 +40,21 @@ def recipe(request, id):
     steps=response['Items'][0]['steps']
     name=response['Items'][0]['name']
 
+    x = [x.strip() for x in eval(steps)]
+    del x[-1]
+
+    n = len(x)
+
     data = {'servings':servings,
             'ingredients':ingredients,
             'chefname':chefname,
             'img':img,
             'maketime':maketime,
             'region':region,
-            'steps':steps,
-            'name':name}
+            'steps':zip([x+1 for x in list(range(n))], x),
+            'name':name,
+            'n':n,
+            'l':[x+1 for x in list(range(n))]}
 
     return render( request, 'home/recipe.html', data)
 
