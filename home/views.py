@@ -21,7 +21,10 @@ def explore(request):
     return render(request, 'home/explore.html',{'data':zip(names,imglinks,rids)})
 
 
-def recipe(request):
+def recipe(request, id):
+    # FROM here, details of link descrip, steps, so..so..so..
+
+    # TO HERE
     return render( request, 'home/recipe.html')
 
 def base(request):

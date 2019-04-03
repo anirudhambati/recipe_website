@@ -12,7 +12,6 @@
   <h2 class="text-center text-heading">QUICK MEALS FOR KIDS</h2>
 
   {% for name,link,id in data %}
-
     <div class="row" style="width:25%,height:150px">
       <div class="card-deck" >
         <div class="card">
@@ -32,12 +31,11 @@
           <!-- Card content -->
           <div class="card-body  mx-auto p-0">
             <!-- Title -->
-            <h4 class="card-title mx-auto p-0 txt">{{name}}</h4>
+            <h4 class="card-title mx-auto p-0 txt"><a href='{% url 'home:recipe' id %}'> {{name}} </a></h4>
           </div>
         </div>
       </div>
     </div>
-
   {% endfor %}
 
 </div>
