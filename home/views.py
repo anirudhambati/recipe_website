@@ -125,8 +125,7 @@ def login(request):
     else:
         print(response['Items'][0]['password'])
         if(response['Items'][0]['password'] == password):
-            res = 'Log in now'
-            print('You are ready to go in')
+            return redirect('home:explore')
         else:
             print("Got you bitch")
             res = 'The password you have entered is wrong'
