@@ -26,11 +26,11 @@ def recipe(request, id):
     print(type(id))
     dynamoDB=boto3.resource('dynamodb')
     dynamoTable=dynamoDB.Table('recipe')
-    response = dynamoTable.query(
-        KeyConditionExpression=Key('R_id').eq(int(id))
+    response = dynamoTable.scan(
+        FilterExpression=Attr('R_id').eq(int(id))
     )
     #data extraction
-
+    print('aa')
     servings=response['Items'][0]['servings']
     ingredients=response['Items'][0]['ingreditents']
     chefname=response['Items'][0]['Chefname']
@@ -39,7 +39,7 @@ def recipe(request, id):
     region=response['Items'][0]['Region']
     steps=response['Items'][0]['steps']
     name=response['Items'][0]['name']
-
+    print('bb')
     x = [x.strip() for x in eval(steps)]
     del x[-1]
 
