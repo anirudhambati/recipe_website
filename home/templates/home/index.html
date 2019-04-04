@@ -58,7 +58,7 @@
                                 <h4 class="subtext-header mt-2 mb-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
                                 <h4 class="mb-5"> Deleniti consequuntur, nihil voluptatem modi nobis veniam.</h4>
                             </div>
-                            <a class="btn btn-yellow btn-rounded wow fadeInUp" data-wow-delay="0.2s">
+                            <a href="{% url 'home:explore' %}" class="btn btn-yellow btn-rounded wow fadeInUp" data-wow-delay="0.2s">
                                 <i class="far fa-calendar-alt mr-2"></i>
                                 <span> Explore Now</span>
                             </a>
@@ -174,7 +174,7 @@
 
                         <!--Menu button-->
                         <div class="text-center mb-2 mt-2">
-                            <a href="#menu" data-offset="100" class="btn btn btn-outline-grey btn-rounded waves-effect">
+                            <a href="{% url 'home:explore' %}" data-offset="100" class="btn btn btn-outline-grey btn-rounded waves-effect">
                                 <strong>Start Exploring</strong>
                             </a>
                         </div>

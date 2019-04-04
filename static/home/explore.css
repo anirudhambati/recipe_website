@@ -1,3 +1,5 @@
+{% load static from staticfiles %}
+
 body{
 	background-color:#E9E9E9;
 }
@@ -66,13 +68,13 @@ a .liked{
 
 /* love animation*/
 
-
-
 #heart{
 	display:block;
 	width:50px;
 	height:50px;
 	background:rgba(120, 120, 120,1) url("/img/love-icon.png") center no-repeat;
+	/* <!--background:rgba(120, 120, 120,1) {% static 'home/love.png' %} center no-repeat;--> */
+
 	background-size:100%;
 	border-radius:50%;
 	position:relative;
