@@ -133,3 +133,8 @@ def login(request):
             res = 'The password you have entered is wrong'
             flag = 1
     return render(request, 'register/login.html', {'res':res, 'flag':flag})
+
+
+
+def search(request):
+    return render(request,'search/search.html')

@@ -1,4 +1,19 @@
 
+
+.ingredient {
+    background-color: #E9E9E9; /* white */
+    border: 2px solid #37703D;
+    color:#37703D;
+    padding: 5px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 17px;
+    margin: 4px 2px;
+    border-radius: 30px;
+}
+
+
 .button {
     background-color: #37703D; /* Green */
     border: 2px solid #37703D;
@@ -15,16 +30,16 @@
     border-radius: 30px;
   }
 
-  
+
 
   .button1 {
-    background-color: white; 
-    color:#37703D; 
+    background-color: #E9E9E9;
+    color:#37703D;
   }
-  
+
   .button1:hover {
     background-color: #37703D;
-    color: white;
+    color: #E9E9E9;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
   }
 
@@ -32,9 +47,9 @@
 .recipe-title{
 	margin-top:20px;
 	color:#37703D;
-	font-family: 'MetropolisMedium'; 
-	font-weight: normal; 
-	font-style: normal; 
+	font-family: 'MetropolisMedium';
+	font-weight: normal;
+	font-style: normal;
 }
 
 .recipe-title:after{
@@ -48,9 +63,9 @@
 }
 
 .recipe-desc{
-	font-family: 'MetropolisThin'; 
-	font-weight: normal; 
-	font-style: normal;    
+	font-family: 'MetropolisThin';
+	font-weight: normal;
+	font-style: normal;
 }
 
 
