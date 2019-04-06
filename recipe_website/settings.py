@@ -25,7 +25,7 @@ SECRET_KEY = '*wb9v#_at@*k*a!nzmq+n@vvm7t%plyrzmls4#$ao+@22=21$^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '139.59.46.18', 'foode.cf']
 
 
 # Application definition
