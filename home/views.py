@@ -39,7 +39,8 @@ def recipe(request, id):
     region=response['Items'][0]['Region']
     steps=response['Items'][0]['steps']
     name=response['Items'][0]['name']
-    print('bb')
+    description = response['Items'][0]['Description']
+    print(description)
     x = [x.strip() for x in eval(steps)]
     del x[-1]
 
@@ -54,6 +55,7 @@ def recipe(request, id):
             'steps':zip([x+1 for x in list(range(n))], x),
             'name':name,
             'n':n,
+            'description':description,
             'l':[x+1 for x in list(range(n))]}
 
     return render( request, 'home/recipe.html', data)
