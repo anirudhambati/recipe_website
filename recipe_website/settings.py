@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home.apps.HomeConfig',
     'forum.apps.ForumConfig',
-
+    'uploadform.apps.UploadformConfig',
 ]
 
 MIDDLEWARE = [
