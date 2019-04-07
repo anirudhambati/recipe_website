@@ -1,14 +1,12 @@
 @import 'https://fonts.googleapis.com/css?family=Dosis|Metropolis:300,400';
-* {
-	margin: 0;
-	padding: 0;
-}
 
 body {
 	background: white;
 }
 
-.container{
+.log{
+	margin-top: 100px;
+	margin-bottom: 100px;
 	position:absolute;
 	width: auto;
 	height:auto;
@@ -16,7 +14,7 @@ body {
 	left: calc(50% - 160px);
 }
 
-form {
+.s-form{
 	position: absolute;
 	text-align: center;
 	background: #fff;
@@ -90,7 +88,7 @@ button.form-btn.sx:hover {
 }
 
 button.form-btn.sx.back {
-	background-color: rgba(0, 0, 0, 0.15);
+	background-color:rgb(128,128,128);
 	transition:all 0.3s linear;
 }
 

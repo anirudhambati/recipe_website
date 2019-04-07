@@ -3,8 +3,8 @@
 
 {% block extrahead %}
 
-  <!--<link href="{% static 'register/login.css' %}" rel="stylesheet">
-	 JQuery -->
+  <link href="{% static 'register/login.css' %}" rel="stylesheet">
+<!--	 JQuery -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src='https://www.google.com/recaptcha/api.js'></script>
   <script type="text/javascript" src="{% static 'register/login.js' %}"></script>
@@ -13,13 +13,12 @@
 
 
 {% block body %}
-<div class="container">
-	<form class="signUp" method="POST" action="registered" >
+<div class="container log">
+	<form class="signUp s-form" method="POST" action="registered" >
     {% csrf_token %}
 
 		<h3>Create Your Account</h3>
-		<p>Just enter your email address</br>
-and your password for join.
+		<p>Join the most exciting group of FOODE.
 		</p>
 		<input type="text" placeholder="First Name" name="First" required autocomplete='off' >
 		<input type="text" placeholder="Last Name" name="Last" required autocomplete='off' >
@@ -29,7 +28,7 @@ and your password for join.
 		<button class="form-btn sx log-in" type="button">Log In</button>
 		<button class="form-btn dx" type="submit">Sign Up</button>
 	</form>
-	<form class="signIn" method="POST" action="login">
+	<form class="signIn s-form" method="POST" action="login">
     {% csrf_token %}
 
 		<h3>Login</h3>
@@ -42,7 +41,7 @@ and your password for join.
     <small style = "color: #cc0033;"> *{{ res }} </small>
 	</form>
 </div>
-
+<div style="width:100%;height:700px;"></div>
 <script>
 var flag = {{flag}};
 $(document).ready(function(){
