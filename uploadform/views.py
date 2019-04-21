@@ -9,6 +9,7 @@ from django.shortcuts import render
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from django.conf.urls.static import static
+import datetime
 
 # Create your views here.
 
@@ -40,16 +41,16 @@ def insert(request):
         #print('a')
         #print(file_name)
         #print(key_name)
-        #s3.upload_file(file_name, bucket, key_name)
+        s3.upload_file(file_name, bucket, key_name)
 
-        # config.signature_version = botocore.UNSIGNED
+        #ss config.signature_version = botocore.UNSIGNED
         # link=boto3.client('s3').generate_presigned_url('get_object', ExpiresIn=0, Params={'Bucket': bucket, 'Key': key_name})
         # print(link)
         #
-        # bucket_location = boto3.client('s3').get_bucket_location(Bucket=bucket)
-        # object_url = "https://s3-ap-southeast-1.amazonaws.com/{0}/{1}".format(
-        #     bucket,
-        #     key_name)
+        bucket_location = boto3.client('s3').get_bucket_location(Bucket=bucket)
+        link = "https://s3-ap-southeast-1.amazonaws.com/{0}/{1}".format(
+             bucket,
+             key_name)
         dynamoDB = boto3.resource('dynamodb')
         dynamoTable = dynamoDB.Table('recipe')
 
@@ -58,7 +59,7 @@ def insert(request):
 
         dynamoTable.put_item(
             Item={
-                'R_id': int(count + 1),
+                'R_id':int(count + 1),
                 'name': Rname,
                 'servings': Servings,
                 'ingreditents': ingredients,
@@ -74,20 +75,14 @@ def insert(request):
         dynamoTable = dynamoDB.Table('forum')
         scan = dynamoTable.scan()
         count2 = len(scan['Items'])
+        now = datetime.datetime.now()
+
 
         dynamoTable.put_item(
             Item={
-                'U_id': int(count2 + 1)
-                'R_id': int(count + 1),
-                'date': Rname,
-                'servings': Servings,
-                'ingreditents': ingredients,
-                'steps': Steps,
-                'Region': 'Indian',
-                'Maketime': Maketime,
-                'Imglink': link,
-                'Chefname': 'Anirudh',
-                'Description': Description,
+                'U_id': int(count2 + 1),
+                'R_id':int(count + 1),
+                'date': str(now.day + '/' + now.month + '/' + now.year),
                 }
         )
 
