@@ -64,7 +64,13 @@ def base(request):
     return render(request, 'home/base.html')
 
 def register(request):
-    return render(request,'register/login.html')
+    return render(request, 'register/login.html')
+
+def findchefs(request):
+
+    ### GET TOP 10 USER DETAILS ###
+    
+    return render(request, 'home/findchefs.html')
 
 
 def registered(request):
