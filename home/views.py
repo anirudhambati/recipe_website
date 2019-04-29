@@ -68,9 +68,43 @@ def register(request):
 
 def findchefs(request):
 
-    ### GET TOP 5 USER DETAILS ###
-    users = []
-    user_details = {'users': users}
+    dynamoDB=boto3.resource('dynamodb')
+    dynamoTable=dynamoDB.Table('Users')
+
+    fe = Attr('email').contains('yashukikkuri@gmail.com')
+
+    response = dynamoTable.scan(
+         FilterExpression=fe,
+         )
+
+    following=response['Items'][0]['following']
+
+    scan=dynamoTable.scan()
+    top5=[]
+    followers5=[]
+    count=0
+
+    for i in scan['Items']:
+        if(i['U_id'] in following):
+            continue
+        else:
+            count+=1
+            if(count>5):
+
+                if(i['followers']>min(followers5)):
+                    index=followers5.index(min(followers5))
+                    top5[index]=i['U_id']
+                    followers5[index]=i['followers']
+                    print(followers5)
+                    print("\n\n")
+                    print(top5)
+                    print("\n\n")
+
+            else:
+                top5.append(i['U_id'])
+                followers5.append(i['followers'])
+
+    user_details = {'data': top5}            
 
     return render(request, 'home/findchefs.html', user_details)
 
