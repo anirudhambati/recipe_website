@@ -12,6 +12,24 @@ import datetime
 
 # Create your views here.
 
+def search(request):
+    a = ['abcdef','abdefh','abcrhn','acres','acgjn','qevcss','bcdsrgb']
+    d = []
+    for x in range(len(a)):
+        b = {}
+        b['id'] = x
+        b['value'] = a[x]
+        d.append(b)
+    return render(request, 'uploadforum/search.html',{'names':d})
+
+def insert1(request):
+    if request.method == "POST":
+        ingredients = request.POST.getlist('ingredient')
+        print("\ningredients:",ingredients)
+    return render(request,'uploadforum/complected.html')
+
+
+
 #@login_required
 def insert(request):
     if request.method == "POST":

@@ -68,7 +68,7 @@ def register(request):
 
 def findchefs(request):
 
-    ### GET TOP 10 USER DETAILS ###
+    ### GET TOP 5 USER DETAILS ###
     users = []
     user_details = {'users': users}
 
