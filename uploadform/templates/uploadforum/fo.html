@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>Material Design Bootstrap</title>
-  
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
   <!-- Bootstrap core CSS -->
@@ -21,9 +21,9 @@
 		margin-top:50px;
 		margin-bottom:30px;
 		color:#37703D;
-		font-family: 'MetropolisMedium'; 
-		font-weight: normal; 
-		font-style: normal; 
+		font-family: 'MetropolisMedium';
+		font-weight: normal;
+		font-style: normal;
 	}
 
 	.text-heading:after{
@@ -35,8 +35,8 @@
 		margin: 5px auto;
 		border-radius:5px;
 	}
-	
-	
+
+
 	.desc-recipe{
 		width:90%;
 		height:200px;
@@ -47,7 +47,7 @@
 		font-size: 17px;
 		margin: 4px 2px;
 		border-radius: 30px;
-		
+
 		overflow: hidden;
 		resize: none;
 	}
@@ -86,9 +86,9 @@
 		margin-top:50px;
 		margin-bottom:30px;
 		color:#37703D;
-		font-family: 'MetropolisMedium'; 
-		font-weight: normal; 
-		font-style: normal; 
+		font-family: 'MetropolisMedium';
+		font-weight: normal;
+		font-style: normal;
 	}
 
 	.txt-block{
@@ -104,9 +104,9 @@
 	.ing{
 		width:100%
 	}
-	
-	
-	
+
+
+
 	.number-input input[type="number"] {
 	-webkit-appearance: textfield;
 	-moz-appearance: textfield;
@@ -169,26 +169,26 @@
 	height: 2rem;
 	color: #495057;
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 	/* nav starts her */
 
 	.container .ul-nav{
 		margin-top: 20px;
 	}
-	 
+
 	.container .a-nav{
 		padding: 8px 80px;
 		color: rgba(22, 20, 20, 0.664);
 	}
-	  
+
 	.container .ul-nav{
 		position: relative;
 	}
-	 
+
 	.container .a-link-nav{
 		position: relative;
 		z-index: 99999;
@@ -204,9 +204,9 @@
 		z-index: 0;
 		box-shadow: 2px 5px 20px rgba(209, 14, 14, 0.479);
 	}
-	 
+
 	.active{
-		color: white !important; 
+		color: white !important;
 	}
 
   </style>
@@ -219,9 +219,9 @@
 
     <div class="container border text-center mt-4">
         <h3 class="m-4 text-green">Add Your Recipe</h3>
-		
+
         <div class="d-flex justify-content-center">
- 
+
             <ul class="nav bg-light ul-nav" role="tablist">
                 <li class="nav-item">
                     <a href="#step-1" id="step1-tab" class="nav-link a-nav a-link-nav active " aria-selected="true" data-toggle="tab" role="tab">Recipe Destails</a>
@@ -234,9 +234,9 @@
                 </li>
                 <div class="panel rounded"></div>
             </ul>
- 
+
         </div>
-		<form method="post" enctype="multipart/form-data" action="/forum/insert/">
+		<form method="post" enctype="multipart/form-data" action="/uploadform/insert/">
 		{% csrf_token %}
         <div class="tab-content container">
             <div class="tab-pane fade show active" id="step-1" aria-labelledby="step1-tab" role="tabpanel">
@@ -260,7 +260,7 @@
 											<input class="quantity txt-block " min="1" placeholder="No of servings" type="number" name="Servings">
 									</div>
 								</div>
-								
+
 							</div>
 						</div>
 						<div class="col-lg-5" style="color:black">
@@ -323,7 +323,7 @@
 							<input type="button" id="add-s" class="add-step" value="Add" />
 						</div>
 					</div>
-					
+
 					<ol class="step-list" style="color:black"></ol>
 				</div>
 				<br><br>
@@ -388,29 +388,29 @@ function addblock(itemval){
 
 function deleteItem(e, item) {
   e.preventDefault();
-  $(item).parent().parent().fadeOut('slow', function() { 
+  $(item).parent().parent().fadeOut('slow', function() {
     $(item).parent().parent().remove();
   });
 }
 
 $(function() {
- 
+
    $("#add").on('click', function(e){
      e.preventDefault();
      addItem();
 	});
-  
+
 	$("#items").on('click', '.delete', function(e){
-		var item = this; 
+		var item = this;
 		deleteItem(e, item)
 	});
-	
+
 	$("#all-ing").on('click', '.sugg-ing', function(e){
 		var item = this;
 		var itemval = $(this).text();
 		console.log(itemval);
 		e.preventDefault();
-		$(item).fadeOut('slow', function() { 
+		$(item).fadeOut('slow', function() {
 			$(item).remove();
 		});
 		if(itemval != ''){
@@ -429,55 +429,55 @@ $(function() {
 		$(item).remove();
 		console.log("delete");
 	});
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
 	var panel = $('.panel').css('width');
- 
+
     var width = panel.replace('px','');
     var i = 0;
- 
+
     $('ul li').each(function(){
         i++;
     });
- 
+
     var val1 = width/i;
-    
+
     $('.panel').css('width',val1 + 'px');
- 
+
     $('ul li:nth-child(1)').on('click', function(){
- 
+
             $('.panel').animate({
                 left : '0px'
             })
     });
- 
+
     $('ul li:nth-child(2)').on('click', function(){
- 
+
         $('.panel').animate({
             left : val1 - 10 + 'px'
         })
     });
- 
+
     $('ul li:nth-child(3)').on('click', function(){
- 
+
         $('.panel').animate({
             left : val1 + val1 + 'px'
         })
     });
-	
-	
-	
-	
-	
+
+
+
+
+
 });
 
 
