@@ -69,27 +69,29 @@ def register(request):
 def findchefs(request):
 
     ### GET TOP 10 USER DETAILS ###
-    
-    return render(request, 'home/findchefs.html')
+    users = []
+    user_details = {'users': users}
+
+    return render(request, 'home/findchefs.html', user_details)
 
 
 def registered(request):
-    first=request.POST['First']
-    last=request.POST['Last']
-    email=request.POST['email']
-    password=request.POST['password']
+    first = request.POST['First']
+    last = request.POST['Last']
+    email = request.POST['email']
+    password = request.POST['password']
 
-    dynamoDB=boto3.resource('dynamodb')
-    dynamoTable=dynamoDB.Table('Users')
+    dynamoDB = boto3.resource('dynamodb')
+    dynamoTable = dynamoDB.Table('Users')
     fe = Attr('email').eq(email)
-    response=dynamoTable.scan(FilterExpression=fe)
+    response = dynamoTable.scan(FilterExpression = fe)
 
     if (response['Items']==[]):
         response=dynamoTable.scan()
         if (response['Items']==[]):
-            sno=1
+            sno = 1
         else:
-            sno=len(response['Items'])+1
+            sno = len(response['Items'])+1
         dynamoTable.put_item(
         Item={
         'uid':str(sno),
@@ -101,12 +103,6 @@ def registered(request):
         'long':'35',
         }
         )
-            # response=dynamoTable.get_item(
-            # Key={
-            # 'fname':'Yashwanth',
-            # 'email':'yashukikkuri@gmail.com'
-            # }
-            # )
 
     else:
         # sno=len(response['Items'])+1
