@@ -114,7 +114,7 @@ def registered(request):
     last = request.POST['Last']
     email = request.POST['email']
     password = request.POST['password']
-
+    uname=last+first
     dynamoDB = boto3.resource('dynamodb')
     dynamoTable = dynamoDB.Table('Users')
     fe = Attr('email').eq(email)
@@ -128,13 +128,17 @@ def registered(request):
             sno = len(response['Items'])+1
         dynamoTable.put_item(
         Item={
-        'uid':str(sno),
+        'U_id':str(sno),
         'fname':first,
         'lname':last,
+        'uname':uname,
         'email':email,
         'password':password,
         'lat':'80',
         'long':'35',
+        'followers':0,
+        'following':[],
+        'D_id':0
         }
         )
 

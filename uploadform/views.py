@@ -13,7 +13,20 @@ import datetime
 # Create your views here.
 
 def search(request):
-    a = ['abcdef','abdefh','abcrhn','acres','acgjn','qevcss','bcdsrgb']
+    dynamoDB=boto3.resource('dynamodb')
+    dynamoTable=dynamoDB.Table('ingredients')
+
+    pe="#na"
+    ean = { "#na": "name", }
+
+    scan=dynamoTable.scan(
+            ProjectionExpression=pe,
+            ExpressionAttributeNames=ean
+    )
+    a=[]
+    for i in scan['Items']:
+        a.append(i['name'])
+
     d = []
     for x in range(len(a)):
         b = {}
