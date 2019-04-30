@@ -144,9 +144,29 @@ def tryout(request):
 
     print(recommended_recipes)
 
+    ### ACROSS FORUMS ###
+'''
+    across_forums = []
+
+    dynamoDB = boto3.resource('dynamodb')
+    dynamoTable = dynamoDB.Table('forum')
+    response = dynamoTable.scan()
+
+    count = len(response['Items'])
+
+    for i in range(0,4):
+
+'''
+    #####################
+
     #############################
 
-    return render(request, 'home/tryout.html',{'data':zip(name,imglink,rid)})
+    data = {'data':zip(name,imglink,rid),
+            'trending':trending,
+            'recommended_recipes':recommended_recipes,
+            'most_famous':most_famous}
+
+    return render(request, 'home/tryout.html', data)
 
 
 def recipe(request, id):
