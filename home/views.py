@@ -72,6 +72,10 @@ def explore(request):
         trending.append(temp_r[i])
     ################
 
+    uid = request.session['uid']
+    i = u.index(uid)
+    user_table = rvu_t[i-1]
+    for user in u:
 
 
     #############################
