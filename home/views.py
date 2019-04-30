@@ -77,7 +77,16 @@ def explore(request):
     i = u.index(uid)
     user_table = rvu_t[i-1]
     for user in rvu_t:
-        sim.append(sum(user and user_table))
+        sim.append(sum(user or user_table))
+
+    temp_r = u
+
+    for a in range(0, n):
+        for j in range(0, n-a-1):
+            if sim[j] > sim[j+1]:
+                sim[j], sim[j+1] = sim[j+1], sim[j]
+                temp_r[j], temp_r[j+1] = temp_r[j+1], temp_r[j]
+
 
 
     #############################
