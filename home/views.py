@@ -73,9 +73,11 @@ def explore(request):
     ################
 
     uid = request.session['uid']
+    sim = []
     i = u.index(uid)
     user_table = rvu_t[i-1]
-    for user in u:
+    for user in rvu_t:
+        sim.append(sum(user and user_table))
 
 
     #############################
