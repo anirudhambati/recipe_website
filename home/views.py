@@ -24,6 +24,58 @@ def explore(request):
         imglink.append(imglinks[rand])
         rid.append(rids[rand])
 
+
+    #### RECOMMENDOR SYSTEMS ####
+
+    dynamoDB=boto3.resource('dynamodb')
+    dynamoTable=dynamoDB.Table('Users')
+    scan=dynamoTable.scan()
+    count=len(scan['Items'])
+    u=[]
+
+    for i in range(1,count+1):
+        u.append(i)
+
+    dynamoDB=boto3.resource('dynamodb')
+    dynamoTable=dynamoDB.Table('Recommend')
+    scan=dynamoTable.scan()
+
+    rvu=[]
+    r=[]
+
+    for i in scan['Items']:
+        rvu.append(i['U_id'])
+        r.append(i['R_id'])
+
+    rvu_t = [list(i) for i in zip(*rvu)]
+
+    ### FAMOUS ###
+    top_recipes = [sum(i) for i in zip(*rvu_t)]
+
+    n = len(top_recipes)
+    temp_r = r
+
+    for a in range(0, n):
+        for j in range(0, n-a-1):
+            if top_recipes[j] > top_recipes[j+1]:
+                top_recipes[j], top_recipes[j+1] = top_recipes[j+1], top_recipes[j]
+                temp_r[j], temp_r[j+1] = temp_r[j+1], temp_r[j]
+
+
+    most_famous = []
+    trending = []
+    
+    for i in range(0, 8):
+        most_famous.append(temp_r[i])
+
+    for i in range(6, 10):
+        trending.append(temp_r[i])
+    ################
+
+
+
+    #############################
+
     return render(request, 'home/explore.html',{'data':zip(name,imglink,rid)})
 
 
