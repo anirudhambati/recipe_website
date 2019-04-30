@@ -68,17 +68,25 @@ def explore(request):
     for i in range(0, 8):
         most_famous.append(temp_r[i])
 
+    print(most_famous)
+
     for i in range(6, 10):
         trending.append(temp_r[i])
+
+    print(trending)
     ################
 
     uid = request.session['uid']
+    print(uid)
     sim = []
     i = u.index(uid)
-    user_table = rvu_t[i-1]
+    print(i)
+    print(len(rvu_t))
+    user_table = rvu_t[i]
     for user in rvu_t:
         sim.append(sum(user or user_table))
 
+    n = len(u)
     temp_r = u
 
     for a in range(0, n):
@@ -87,7 +95,29 @@ def explore(request):
                 sim[j], sim[j+1] = sim[j+1], sim[j]
                 temp_r[j], temp_r[j+1] = temp_r[j+1], temp_r[j]
 
+    match_rps = []
 
+    for k in range(0,5):
+        match_rps.append(rvu_t[u.index(temp_r[k])])
+
+    recom_rps = [sum(i) for i in zip(*match_rps)]
+
+    n = len(top_recipes)
+    temp_r = r
+
+    for a in range(0, n):
+        for j in range(0, n-a-1):
+            if recom_rps[j] > recom_rps[j+1]:
+                recom_rps[j], recom_rps[j+1] = recom_rps[j+1], recom_rps[j]
+                temp_r[j], temp_r[j+1] = temp_r[j+1], temp_r[j]
+
+
+    recommended_recipes = []
+
+    for r in range(0,8):
+        recommended_recipes.append(temp_r[r])
+
+    print(recommended_recipes)
 
     #############################
 
