@@ -49,8 +49,74 @@ def tryout(request):
         imglink.append(imglinks[rand])
         rid.append(rids[rand])
 
-    return render(request, 'home/tryout.html',{'data':zip(name,imglink,rid),'uid':uid})
 
+    #### RECOMMENDOR SYSTEMS ####
+
+    dynamoDB=boto3.resource('dynamodb')
+    dynamoTable=dynamoDB.Table('Users')
+    scan=dynamoTable.scan()
+    count=len(scan['Items'])
+    u=[]
+
+    for i in range(1,count+1):
+        u.append(i)
+
+    dynamoDB=boto3.resource('dynamodb')
+    dynamoTable=dynamoDB.Table('Recommend')
+    scan=dynamoTable.scan()
+
+    rvu=[]
+    r=[]
+
+    for i in scan['Items']:
+        rvu.append(i['U_id'])
+        r.append(i['R_id'])
+
+    rvu_t = [list(i) for i in zip(*rvu)]
+
+    ### FAMOUS ###
+    top_recipes = [sum(i) for i in zip(*rvu_t)]
+
+    n = len(top_recipes)
+    temp_r = r
+
+    for a in range(0, n):
+        for j in range(0, n-a-1):
+            if top_recipes[j] > top_recipes[j+1]:
+                top_recipes[j], top_recipes[j+1] = top_recipes[j+1], top_recipes[j]
+                temp_r[j], temp_r[j+1] = temp_r[j+1], temp_r[j]
+
+
+    most_famous = []
+    trending = []
+
+    for i in range(0, 8):
+        most_famous.append(temp_r[i])
+
+    for i in range(6, 10):
+        trending.append(temp_r[i])
+    ################
+
+    uid = request.session['uid']
+    sim = []
+    i = u.index(uid)
+    user_table = rvu_t[i-1]
+    for user in rvu_t:
+        sim.append(sum(user or user_table))
+
+    temp_r = u
+
+    for a in range(0, n):
+        for j in range(0, n-a-1):
+            if sim[j] > sim[j+1]:
+                sim[j], sim[j+1] = sim[j+1], sim[j]
+                temp_r[j], temp_r[j+1] = temp_r[j+1], temp_r[j]
+
+
+
+    #############################
+
+    return render(request, 'home/tryout.html',{'data':zip(name,imglink,rid)})
 
 
 def recipe(request, id):
