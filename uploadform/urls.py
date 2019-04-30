@@ -1,5 +1,7 @@
 from django.urls import path
-from . import views 
+from . import views
+app_name='uploadform'
+
 
 urlpatterns = [
     path('',views.home,name='forum-home'),

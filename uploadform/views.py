@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -97,6 +97,7 @@ def insert(request):
         quantity = request.POST.getlist('quantity')
         option = request.POST.getlist('option')
         Steps = request.POST.getlist('Steps')
+        Steps=str(Steps)
         Servings = request.POST['Servings']
         Description = request.POST['Description']
         Maketime = request.POST['Maketime']
@@ -116,9 +117,19 @@ def insert(request):
         s3.upload_file(file_name, bucket, key_name)
 
         bucket_location = boto3.client('s3').get_bucket_location(Bucket=bucket)
-        link = "https://s3-ap-southeast-1.amazonaws.com/{0}/{1}".format(
+        link = "https://s3-ap-south-1.amazonaws.com/{0}/{1}".format(
              bucket,
              key_name)
+
+        x=request.session['uid']
+        print(x)
+        dynamoDB=boto3.resource('dynamodb')
+        dynamoTable=dynamoDB.Table('Users')
+        fe = Attr('U_id').eq(x)
+        response=dynamoTable.scan(FilterExpression=fe)
+        print(response['Items'])
+        chefname=response['Items'][0]['uname']
+
         dynamoDB = boto3.resource('dynamodb')
         dynamoTable = dynamoDB.Table('recipe')
 
@@ -135,7 +146,7 @@ def insert(request):
                 'Region': 'Indian',
                 'Maketime': Maketime,
                 'Imglink': link,
-                'Chefname': 'Anirudh',
+                'Chefname': chefname ,
                 'Description': Description,
                 }
         )
@@ -156,9 +167,29 @@ def insert(request):
                 }
         )
 
-    return render(request,'uploadforum/complected.html')
+    return redirect('forum:forum')
 
 
 #@login_required
 def home(request):
-    return render(request,'uploadforum/fo.html')
+    dynamoDB=boto3.resource('dynamodb')
+    dynamoTable=dynamoDB.Table('ingredients')
+
+    pe="#na"
+    ean = { "#na": "name", }
+
+    scan=dynamoTable.scan(
+            ProjectionExpression=pe,
+            ExpressionAttributeNames=ean
+    )
+    a=[]
+    for i in scan['Items']:
+        a.append(i['name'])
+
+    d = []
+    for x in range(len(a)):
+        b = {}
+        b['id'] = x
+        b['value'] = a[x]
+        d.append(b)
+    return render(request,'uploadforum/fo.html',{'names':d})
