@@ -2,9 +2,10 @@ from django.shortcuts import render,HttpResponse,redirect
 import boto3
 from boto3.dynamodb.conditions import Key, Attr
 import random
-from django.contrib.auth.models import User
+
 # Create your views here.
 def explore(request):
+    uid=request.session['uid']
     dynamoDB=boto3.resource('dynamodb')
     dynamoTable=dynamoDB.Table('recipe')
     names=[]
@@ -24,7 +25,32 @@ def explore(request):
         imglink.append(imglinks[rand])
         rid.append(rids[rand])
 
-    return render(request, 'home/explore.html',{'data':zip(name,imglink,rid),"user":request.user})
+    return render(request, 'home/explore.html',{'data':zip(name,imglink,rid),'uid':uid})
+
+
+def tryout(request):
+    uid=request.session['uid']
+    dynamoDB=boto3.resource('dynamodb')
+    dynamoTable=dynamoDB.Table('recipe')
+    names=[]
+    imglinks=[]
+    rids=[]
+    response = dynamoTable.scan()
+    for i in response['Items']:
+        names+=[i['name']]
+        imglinks+=[i['Imglink']]
+        rids+=[i['R_id']]
+    name=[]
+    imglink=[]
+    rid=[]
+    for x in range(0,4):
+        rand=random.randint(1,100)
+        name.append(names[rand])
+        imglink.append(imglinks[rand])
+        rid.append(rids[rand])
+
+    return render(request, 'home/tryout.html',{'data':zip(name,imglink,rid),'uid':uid})
+
 
 
 def recipe(request, id):
@@ -67,7 +93,7 @@ def recipe(request, id):
             'steps':zip([x+1 for x in list(range(n))], x),
             'name':name,
             'n':n,
-            'description':description,
+            'description':description[1:-1],
             'l':[x+1 for x in list(range(n))]}
 
     return render( request, 'home/recipe.html', data)
@@ -173,7 +199,7 @@ def registered(request):
             sno = len(response['Items'])+1
         dynamoTable.put_item(
         Item={
-        'U_id':str(sno),
+        'U_id':sno,
         'fname':first,
         'lname':last,
         'uname':uname,
@@ -191,9 +217,10 @@ def registered(request):
         # sno=len(response['Items'])+1
         print('email already exists')
 
-    return HttpResponse("hii")
+    return render(request, 'home/index.html')
 
 def home(request):
+    request.session['uid']=0
     return render(request, 'home/index.html')
 
 def login(request):
@@ -213,12 +240,10 @@ def login(request):
         id = int(response['Items'][0]['U_id'])
         request.session['uid']=id
         if(response['Items'][0]['password'] == password):
-            return redirect('home:explore')
+            return redirect('home:tryout')
         else:
             res = 'The password you have entered is wrong'
             flag = 1
-
-
     return render(request, 'register/login.html', {'res':res, 'flag':flag})
 
 

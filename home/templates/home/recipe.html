@@ -36,8 +36,7 @@
             <h3 class="font-weight-bold mb-3 recipe-title"><strong>{{name}}</strong></h3>
             <p class="recipe-desc my-4">{{description}}</p>
             <div class="row">
-              <a href="#"><button class="button button1 mx-4">Preparation</button></a>
-              <a href="#"><button class="button button1 mx-4">Schedule Recipe</button></a>
+              <a href="#abc"><button class="button button1 mx-4">Preparation</button></a>
             </div>
           </div>
           <!-- Grid column -->
@@ -65,59 +64,9 @@
 	</div>
   {% endfor %}
 
-	<div class="row my-4">
-		<div class="col">
-			<div class="ingredient">1 tsp</div>
-			<span class="ml-2">tea powder</span>
-		</div>
-		<div class="col">
-			<div class="ingredient">1 tsp</div>
-			<span class="ml-2">tea powder</span>
-		</div>
-	</div>
-	<div class="row my-4">
-		<div class="col">
-			<div class="ingredient">1 tsp</div>
-			<span class="ml-2">tea powder</span>
-		</div>
-		<div class="col">
-			<div class="ingredient">1 tsp</div>
-			<span class="ml-2">tea powder</span>
-		</div>
-	</div>
-	<div class="row my-4">
-		<div class="col">
-			<div class="ingredient">1 tsp</div>
-			<span class="ml-2">tea powder</span>
-		</div>
-		<div class="col">
-			<div class="ingredient">1 tsp</div>
-			<span class="ml-2">tea powder</span>
-		</div>
-	</div>
-	<div class="row my-4">
-		<div class="col">
-			<div class="ingredient">1 tsp</div>
-			<span class="ml-2">tea powder</span>
-		</div>
-		<div class="col">
-			<div class="ingredient">1 tsp</div>
-			<span class="ml-2">tea powder</span>
-		</div>
-	</div>
-	<div class="row my-4">
-		<div class="col">
-			<div class="ingredient">1 tsp</div>
-			<span class="ml-2">tea powder</span>
-		</div>
-	</div>
-
 	<div class="row" style="margin-top:100px">
 		<div class="col text-center">
-			<button class="button button1">2 Serving</button>
-		</div>
-		<div class="col text-center">
-			<button class="button button1">Add to cart</button>
+			<button class="button button1">{{servings}} Servings</button>
 		</div>
 	</div>
 </div>
@@ -129,7 +78,7 @@
 <div class="container my-4 ">
   <div class="row mb-4">
     <div class="col">
-      <h3 class="font-weight-bold recipe-title"><strong>Steps involved</strong></h3>
+      <h3 id="abc" class="font-weight-bold recipe-title"><strong>Steps involved</strong></h3>
     </div>
   </div>
 </div>
