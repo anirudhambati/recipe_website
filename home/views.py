@@ -2,7 +2,7 @@ from django.shortcuts import render,HttpResponse,redirect
 import boto3
 from boto3.dynamodb.conditions import Key, Attr
 import random
-
+from django.contrib.auth.models import User
 # Create your views here.
 def explore(request):
     dynamoDB=boto3.resource('dynamodb')
@@ -24,7 +24,7 @@ def explore(request):
         imglink.append(imglinks[rand])
         rid.append(rids[rand])
 
-    return render(request, 'home/explore.html',{'data':zip(name,imglink,rid)})
+    return render(request, 'home/explore.html',{'data':zip(name,imglink,rid),"user":request.user})
 
 
 def recipe(request, id):
@@ -210,11 +210,15 @@ def login(request):
         print("register first")
     else:
         print(response['Items'][0]['password'])
+        id = int(response['Items'][0]['U_id'])
+        request.session['uid']=id
         if(response['Items'][0]['password'] == password):
             return redirect('home:explore')
         else:
             res = 'The password you have entered is wrong'
             flag = 1
+
+
     return render(request, 'register/login.html', {'res':res, 'flag':flag})
 
 
