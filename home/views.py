@@ -36,16 +36,16 @@ def recipe(request, id):
         FilterExpression=Attr('R_id').eq(int(id))
     )
     #data extraction
-    print('aa')
-    servings=response['Items'][0]['servings']
-    ingredients=response['Items'][0]['ingreditents']
-    chefname=response['Items'][0]['Chefname']
-    img=response['Items'][0]['Imglink']
-    maketime=response['Items'][0]['Maketime']
-    region=response['Items'][0]['Region']
-    steps=response['Items'][0]['steps']
-    name=response['Items'][0]['name']
+    servings    =response['Items'][0]['servings']
+    ingredients =response['Items'][0]['ingreditents']
+    chefname    =response['Items'][0]['Chefname']
+    img         =response['Items'][0]['Imglink']
+    maketime    =response['Items'][0]['Maketime']
+    region      =response['Items'][0]['Region']
+    steps       =response['Items'][0]['steps']
+    name        =response['Items'][0]['name']
     description = response['Items'][0]['Description']
+
     print(description)
     x = [x.strip() for x in eval(steps)]
     del x[-1]
@@ -80,9 +80,76 @@ def register(request):
 
 def findchefs(request):
 
-    ### GET TOP 5 USER DETAILS ###
-    users = []
-    user_details = {'users': users}
+    dynamoDB = boto3.resource('dynamodb')
+    dynamoTable = dynamoDB.Table('Users')
+
+
+    fe = Attr('email').contains('yashukikkuri@gmail.com')
+
+    response = dynamoTable.scan(
+         FilterExpression = fe,
+         )
+
+    following = response['Items'][0]['following']
+
+    scan = dynamoTable.scan()
+    top5 = []
+    followers5=[]
+    count = 0
+
+    for i in scan['Items']:
+        if(i['U_id'] in following):
+            continue
+        else:
+            count+=1
+            if(count>5):
+
+                if(i['followers']>min(followers5)):
+                    index=followers5.index(min(followers5))
+
+                    a = []
+                    response2 = dynamoTable.scan(
+                        FilterExpression = Attr('U_id').eq(int(i['U_id']))
+                    )
+                    fname = response2['Items'][0]['fname']
+                    uname = response2['Items'][0]['uname']
+                    lname = response2['Items'][0]['lname']
+                    followers = response2['Items'][0]['followers']
+
+                    a.append(i['U_id'])
+                    a.append(fname)
+                    a.append(lname)
+                    a.append(uname)
+                    a.append(followers)
+
+                    top5[index] = a
+
+                    print(followers5)
+                    print("\n\n")
+                    print(top5)
+                    print("\n\n")
+
+            else:
+                a = []
+                response2 = dynamoTable.scan(
+                    FilterExpression = Attr('U_id').eq(int(i['U_id']))
+                )
+                fname = response2['Items'][0]['fname']
+                uname = response2['Items'][0]['uname']
+                lname = response2['Items'][0]['lname']
+                followers = response2['Items'][0]['followers']
+
+                a.append(i['U_id'])
+                a.append(fname)
+                a.append(lname)
+                a.append(uname)
+                a.append(followers)
+
+                top5.append(a)
+                followers5.append(i['followers'])
+
+
+    user_details = {'data': top5}
 
     return render(request, 'home/findchefs.html', user_details)
 
@@ -130,7 +197,6 @@ def home(request):
     return render(request, 'home/index.html')
 
 def login(request):
-    print("####################")
     flag = 0
     email=request.POST['email']
     password=request.POST['password']
@@ -147,11 +213,9 @@ def login(request):
         if(response['Items'][0]['password'] == password):
             return redirect('home:explore')
         else:
-            print("Got you bitch")
             res = 'The password you have entered is wrong'
             flag = 1
     return render(request, 'register/login.html', {'res':res, 'flag':flag})
-
 
 
 def search(request):
