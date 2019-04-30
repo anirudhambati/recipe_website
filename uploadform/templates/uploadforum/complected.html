@@ -1,15 +1,275 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
-    <script src="main.js"></script>
-</head>
-<body>
-    <h1> Complected </h1>
-    <!-- <img src="{{object_url}}" -->
-</body>
-</html>
+{% extends 'home/base.html' %}
+{% load static from staticfiles %}
+
+{% block body %}
+
+<div style="width:100%;height:50px">
+
+</div>
+
+<div class="container sec-card">
+
+  <h2 class="text-center text-heading">QUICK MEALS FOR KIDS</h2>
+
+
+    <div class="row" style="">
+      <div class="clearfix" >
+
+          {% for name,link,id in data %}
+          <div class="card m-2 post">
+
+          <!-- Card image -->
+          <div class="view overlay">
+            <img class="card-img-top" src={{ link }} alt="Card image cap">
+            <a>
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
+
+          <!-- Button -->
+
+          <button type="button" class="btn btn-danger btn-circle btn-floating ml-auto mr-4 lighten-3">
+            <i class="fa fa-heart"></i>
+          </button>
+
+          <div class="card-body  mx-auto p-0">
+            <h4 class="card-title txt"><a href='{% url 'home:recipe' id %}' class="green-text">{{name}}</h4>
+          </div>
+        </div>
+        {% endfor %}
+
+
+
+        </div>
+      </div>
+    </div>
+
+
+</div>
+
+
+
+<div class="container sec-card">
+
+  <h2 class="text-center text-heading">TRENDING RECIPES</h2>
+
+  <div class="row">
+    <div class="card-deck">
+      <!-- first Card -->
+      <div class="card">
+
+        <!-- Card image -->
+        <div class="view overlay">
+          <img class="card-img-top" src="img/food.jpg" alt="Card image cap">
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+
+        <!-- Button -->
+        <!-- <div class="card-img-overlay"> -->
+
+          <a class="btn btn-danger btn-circle btn-floating ml-auto mr-4 lighten-3"  >
+            <i class="fa fa-heart"></i>
+          </a>
+
+        <!-- </div> -->
+        <!-- Card content -->
+        <div class="card-body  mx-auto p-0">
+          <!-- Title -->
+          <h4 class="card-title mx-auto p-0 txt">Card title</h4>
+        </div>
+      </div>
+      <!-- / first Card -->
+
+      <!-- second Card -->
+      <div class="card">
+
+        <!-- Card image -->
+        <div class="view overlay">
+          <img class="card-img-top" src="img/food.jpg" alt="Card image cap">
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+
+        <!-- Button -->
+        <button type="button" class="btn btn-danger btn-circle btn-floating ml-auto mr-4 lighten-3">
+          <i class="fa fa-heart"></i>
+        </button>
+
+        <!-- Card content -->
+        <div class="card-body  mx-auto p-0">
+
+          <!-- Title -->
+          <h4 class="card-title txt">Card title</h4>
+
+        </div>
+
+
+      </div>
+      <!-- / second Card -->
+
+      <!-- thrid Card -->
+      <div class="card">
+
+        <!-- Card image -->
+        <div class="view overlay">
+          <img class="card-img-top" src="img/food.jpg" alt="Card image cap">
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+
+        <!-- Button -->
+
+        <button type="button" class="btn btn-danger btn-circle btn-floating ml-auto mr-4 lighten-3">
+          <i class="fa fa-heart"></i>
+        </button>
+
+        <div class="card-body mx-auto p-0">
+          <h4 class="card-title txt">Card title</h4>
+        </div>
+      </div>
+      <!-- / thrid Card -->
+      <div class="card">
+
+        <!-- Card image -->
+        <div class="view overlay">
+          <img class="card-img-top" src="img/food.jpg" alt="Card image cap">
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+
+        <!-- Button -->
+
+        <button type="button" class="btn btn-danger btn-circle btn-floating ml-auto mr-4 lighten-3">
+          <i class="fa fa-heart"></i>
+        </button>
+
+        <div class="card-body  mx-auto p-0">
+          <h4 class="card-title txt">Card title</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="container sec-card">
+
+  <h2 class="text-center text-heading">LIKED RECIPES</h2>
+
+  <div class="row">
+    <div class="card-deck">
+      <!-- first Card -->
+      <div class="card">
+
+        <!-- Card image -->
+        <div class="view overlay">
+          <img class="card-img-top" src="img/food.jpg" alt="Card image cap">
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+
+        <!-- Button -->
+        <!-- <div class="card-img-overlay"> -->
+
+          <a class="btn btn-danger btn-circle btn-floating ml-auto mr-4 lighten-3"  >
+            <i class="fa fa-heart"></i>
+          </a>
+
+        <!-- </div> -->
+        <!-- Card content -->
+        <div class="card-body  mx-auto p-0">
+          <!-- Title -->
+          <h4 class="card-title mx-auto p-0 txt">Card title</h4>
+        </div>
+      </div>
+      <!-- / first Card -->
+
+      <!-- second Card -->
+      <div class="card">
+
+        <!-- Card image -->
+        <div class="view overlay">
+          <img class="card-img-top" src="img/food.jpg" alt="Card image cap">
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+
+        <!-- Button -->
+        <button type="button" class="btn btn-danger btn-circle btn-floating ml-auto mr-4 lighten-3">
+          <i class="fa fa-heart"></i>
+        </button>
+
+        <!-- Card content -->
+        <div class="card-body  mx-auto p-0">
+
+          <!-- Title -->
+          <h4 class="card-title txt">Card title</h4>
+
+        </div>
+
+
+      </div>
+      <!-- / second Card -->
+
+      <!-- thrid Card -->
+      <div class="card">
+
+        <!-- Card image -->
+        <div class="view overlay">
+          <img class="card-img-top" src="img/food.jpg" alt="Card image cap">
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+
+        <!-- Button -->
+
+        <button type="button" class="btn btn-danger btn-circle btn-floating ml-auto mr-4 lighten-3">
+          <i class="fa fa-heart"></i>
+        </button>
+
+        <div class="card-body mx-auto p-0">
+          <h4 class="card-title txt">Card title</h4>
+        </div>
+      </div>
+      <!-- / thrid Card -->
+      <div class="card">
+
+        <!-- Card image -->
+        <div class="view overlay">
+          <img class="card-img-top" src="img/food.jpg" alt="Card image cap">
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+
+        <!-- Button -->
+
+        <button type="button" class="btn btn-danger btn-circle btn-floating ml-auto mr-4 lighten-3">
+          <i class="fa fa-heart"></i>
+        </button>
+        <!--
+        <a id="heart" title="Like me!" class="ml-auto mr-4 "></a>
+        -->
+
+
+        <div class="card-body  mx-auto p-0">
+          <h4 class="card-title txt">Card title</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

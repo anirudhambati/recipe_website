@@ -56,16 +56,15 @@
 
   <h3 class="text-center text-heading">INGREDIENTS</h3>
 
+  {% for i,j in ingredients %}
+
 	<div class="row my-4">
-		<div class="col">
-			<div class="ingredient">1 tsp</div>
-			<span class="ml-2">tea powder</span>
-		</div>
-		<div class="col">
-			<div class="ingredient">1 tsp</div>
-			<span class="ml-2">tea powder</span>
+	<div class="col">
+    {{ j }}
 		</div>
 	</div>
+  {% endfor %}
+
 	<div class="row my-4">
 		<div class="col">
 			<div class="ingredient">1 tsp</div>

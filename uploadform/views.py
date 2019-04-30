@@ -39,7 +39,53 @@ def insert1(request):
     if request.method == "POST":
         ingredients = request.POST.getlist('ingredient')
         print("\ningredients:",ingredients)
-    return render(request,'uploadforum/complected.html')
+
+
+        dynamoDB=boto3.resource('dynamodb')
+        dynamoTable=dynamoDB.Table('recipe')
+        # print(dynamoTable.item_count)
+
+        fe = Attr('ingreditents').contains(ingredients[0])
+
+
+        response = dynamoTable.scan(
+             FilterExpression=fe,
+             )
+
+        # print(ingredients[0])
+        # print(ingredients[1])
+
+        ing=[]
+        recipe=[]
+        names=[]
+        imglinks=[]
+        for i in response["Items"]:
+            # print(i['R_id'])
+            ing.append(i['ingreditents'])
+            recipe.append(i['R_id'])
+            names.append(i['name'])
+            imglinks.append(i['Imglink'])
+        # print(ing)
+        #
+        print(len(ing))
+        print(recipe)
+        for j in ing:
+            for h in ingredients[1:]:
+                if(h in j):
+                    continue
+                else:
+                    index=ing.index(j)
+                    ing.remove(j)
+                    recipe.pop(index)
+                    names.pop(index)
+                    imglinks.pop(index)
+                    break
+        print(ing)
+        print(recipe)
+        print(names)
+        print(imglinks)
+
+    return render(request,'uploadforum/complected.html',{'data':zip(names,imglinks,recipe)})
 
 
 

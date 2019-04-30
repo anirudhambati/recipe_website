@@ -1,24 +1,30 @@
 from django.shortcuts import render,HttpResponse,redirect
 import boto3
 from boto3.dynamodb.conditions import Key, Attr
-
+import random
 
 # Create your views here.
 def explore(request):
     dynamoDB=boto3.resource('dynamodb')
     dynamoTable=dynamoDB.Table('recipe')
-    fe = Attr('Region').contains('Indian')
     names=[]
     imglinks=[]
     rids=[]
-    response = dynamoTable.scan(
-        FilterExpression=fe,
-        )
+    response = dynamoTable.scan()
     for i in response['Items']:
         names+=[i['name']]
         imglinks+=[i['Imglink']]
         rids+=[i['R_id']]
-    return render(request, 'home/explore.html',{'data':zip(names,imglinks,rids)})
+    name=[]
+    imglink=[]
+    rid=[]
+    for x in range(0,4):
+        rand=random.randint(1,100)
+        name.append(names[rand])
+        imglink.append(imglinks[rand])
+        rid.append(rids[rand])
+
+    return render(request, 'home/explore.html',{'data':zip(name,imglink,rid)})
 
 
 def recipe(request, id):
@@ -46,8 +52,14 @@ def recipe(request, id):
 
     n = len(x)
 
+    x1 = [x1.strip() for x1 in eval(ingredients)]
+    del x1[-1]
+
+    n1 = len(x1)
+
+
     data = {'servings':servings,
-            'ingredients':ingredients,
+            'ingredients':zip([x1+1 for x1 in list(range(n1))], x1),
             'chefname':chefname,
             'img':img,
             'maketime':maketime,
