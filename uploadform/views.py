@@ -94,6 +94,7 @@ def insert(request):
     if request.method == "POST":
         Rname = request.POST['Rname']
         ingredients = request.POST.getlist('ingredient')
+        ingredients=str(ingredients)
         quantity = request.POST.getlist('quantity')
         option = request.POST.getlist('option')
         Steps = request.POST.getlist('Steps')

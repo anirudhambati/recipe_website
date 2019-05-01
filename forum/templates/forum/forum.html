@@ -33,9 +33,13 @@
     <!-- Section heading -->
     <h2 class="h1-responsive font-weight-bold text-center my-5">Recent posts</h2>
     <!-- Section description -->
-    <p class="text-center w-responsive mx-auto mb-5">Duis aute irure dolor in reprehenderit in voluptate velit
-      esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-      qui officia deserunt mollit anim id est laborum.</p>
+    <p class="text-center w-responsive mx-auto mb-5">Find the latest posts by chefs across the forums</p>
+
+
+
+
+    {% for i in data %}
+
 
     <!-- Grid row -->
     <div class="row">
@@ -45,7 +49,7 @@
 
         <!-- Featured image -->
         <div class="view overlay rounded z-depth-2 mb-lg-0 mb-4">
-          <img class="img-fluid" src="img.jpg" alt="Sample image">
+          <img class="img-fluid" style="width:100% height:100%" src="{{i.imglink}}" alt="Sample image">
           <a>
             <div class="mask rgba-white-slight"></div>
           </a>
@@ -62,14 +66,13 @@
           <h6 class="font-weight-bold mb-3"><i class="fas fa-utensils pr-2"></i>Food</h6>
         </a>
         <!-- Post title -->
-        <h3 class="font-weight-bold mb-3"><strong>Title of the Recipe</strong></h3>
+        <h3 class="font-weight-bold mb-3"><strong>{{i.name}}</strong></h3>
         <!-- Excerpt -->
-        <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime
-          placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus et aut officiis debitis.</p>
+        <p>{{i.desc}}</p>
         <!-- Post data -->
-        <p>by <a><strong>Carine Fox</strong></a>, 19/08/2018</p>
+        <p>by <a><strong>{{i.chefname}}</strong></a>, {{i.date}}</p>
         <!-- Read more button -->
-        <a class="btn btn-success btn-md">Read more</a>
+        <a class="btn btn-success btn-md" href='{% url 'home:recipe' i.rid %}'>Read more</a>
 
       </div>
       <!-- Grid column -->
@@ -79,129 +82,10 @@
 
     <hr class="my-5">
 
-    <!-- Grid row -->
-    <div class="row">
 
-        <!-- Grid column -->
-        <div class="col-lg-5">
 
-          <!-- Featured image -->
-          <div class="view overlay rounded z-depth-2 mb-lg-0 mb-4">
-            <img class="img-fluid" src="img.jpg" alt="Sample image">
-            <a>
-              <div class="mask rgba-white-slight"></div>
-            </a>
-          </div>
+    {% endfor %}
 
-        </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-lg-7">
-
-          <!-- Category -->
-          <a href="#!" class="green-text">
-            <h6 class="font-weight-bold mb-3"><i class="fas fa-utensils pr-2"></i>Food</h6>
-          </a>
-          <!-- Post title -->
-          <h3 class="font-weight-bold mb-3"><strong>Title of the Recipe</strong></h3>
-          <!-- Excerpt -->
-          <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime
-            placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus et aut officiis debitis.</p>
-          <!-- Post data -->
-          <p>by <a><strong>Carine Fox</strong></a>, 19/08/2018</p>
-          <!-- Read more button -->
-          <a class="btn btn-success btn-md">Read more</a>
-
-        </div>
-        <!-- Grid column -->
-
-      </div>
-      <!-- Grid row -->
-
-      <hr class="my-5">
-
-      <!-- Grid row -->
-    <div class="row">
-
-        <!-- Grid column -->
-        <div class="col-lg-5">
-
-          <!-- Featured image -->
-          <div class="view overlay rounded z-depth-2 mb-lg-0 mb-4">
-            <img class="img-fluid" src="img.jpg" alt="Sample image">
-            <a>
-              <div class="mask rgba-white-slight"></div>
-            </a>
-          </div>
-
-        </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-lg-7">
-
-          <!-- Category -->
-          <a href="#!" class="green-text">
-            <h6 class="font-weight-bold mb-3"><i class="fas fa-utensils pr-2"></i>Food</h6>
-          </a>
-          <!-- Post title -->
-          <h3 class="font-weight-bold mb-3"><strong>Title of the Recipe</strong></h3>
-          <!-- Excerpt -->
-          <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime
-            placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus et aut officiis debitis.</p>
-          <!-- Post data -->
-          <p>by <a><strong>Carine Fox</strong></a>, 19/08/2018</p>
-          <!-- Read more button -->
-          <a class="btn btn-success btn-md">Read more</a>
-
-        </div>
-        <!-- Grid column -->
-
-      </div>
-      <!-- Grid row -->
-
-      <hr class="my-5">
-
-      <!-- Grid row -->
-    <div class="row">
-
-        <!-- Grid column -->
-        <div class="col-lg-5">
-
-          <!-- Featured image -->
-          <div class="view overlay rounded z-depth-2 mb-lg-0 mb-4">
-            <img class="img-fluid" src="img.jpg" alt="Sample image">
-            <a>
-              <div class="mask rgba-white-slight"></div>
-            </a>
-          </div>
-
-        </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-lg-7">
-
-          <!-- Category -->
-          <a href="#!" class="green-text">
-            <h6 class="font-weight-bold mb-3"><i class="fas fa-utensils pr-2"></i>Food</h6>
-          </a>
-          <!-- Post title -->
-          <h3 class="font-weight-bold mb-3"><strong>Title of the Recipe</strong></h3>
-          <!-- Excerpt -->
-          <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime
-            placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus et aut officiis debitis.</p>
-          <!-- Post data -->
-          <p>by <a><strong>Carine Fox</strong></a>, 19/08/2018</p>
-          <!-- Read more button -->
-          <a class="btn btn-success btn-md">Read more</a>
-
-        </div>
-        <!-- Grid column -->
-
-      </div>
-      <!-- Grid row -->
 
       <hr class="my-5">
 
@@ -210,9 +94,8 @@
 
 
 
-  </section>
-  <!-- Section: Blog v.1 -->
 </div>
+<!--
 <div class="container">
     <div class="row">
         <ul class="list-unstyled">
@@ -220,7 +103,6 @@
               <img class="d-flex mr-3" src="avatar-min1.jpg" alt="Generic placeholder image">
               <div class="media-body">
                 <h5 class="mt-0 mb-2 font-weight-bold">Anna Smith</h5>
-                <!--Review-->
                 <i class="fas fa-star green-text"> </i>
                 <i class="fas fa-star green-text"> </i>
                 <i class="fas fa-star green-text"> </i>
@@ -235,7 +117,6 @@
               <img class="d-flex mr-3" src="avatar-min2.jpg" alt="Generic placeholder image">
               <div class="media-body">
                 <h5 class="mt-0 mb-2 font-weight-bold">Tom Brown</h5>
-                <!--Review-->
                 <i class="fas fa-star green-text"> </i>
                 <i class="fas fa-star green-text"> </i>
                 <i class="fas fa-star green-text"> </i>
@@ -250,7 +131,6 @@
               <img class="d-flex mr-3" src="avatar-min3.jpg" alt="Generic placeholder image">
               <div class="media-body">
                 <h5 class="mt-0 mb-2 font-weight-bold">Natalie Doe</h5>
-                <!--Review-->
                 <i class="fas fa-star green-text"> </i>
                 <i class="fas fa-star green-text"> </i>
                 <i class="fas fa-star green-text"> </i>
@@ -264,6 +144,7 @@
           </ul>
     </div>
 </div>
+-->
 
 <!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
