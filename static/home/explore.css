@@ -60,96 +60,72 @@ a .liked{
 
 .post{
 	width:262.52px;
-	height:246.53px;
+	height:300px;
 	float:left;
 }
+.img-post{
+	width:262.52px;
+	height: 210px;
+	object-fit: cover;
+}
+.post-txt{
+	height: 59px;
+}
 
+.section-padding {
+padding: 130px 0;
+}
 
+.reservation-area {
+background-image: url(./reservation-bg.jpg);
+background-repeat: no-repeat;
+background-position: center;
+background-size: cover;
+}
+.img-heading-text {
+color: #fff;
+font-family: "Playfair Display",serif;
+font-size: 42px !important;
+font-weight: 700;
+}
+.img-text {
+color: #fff;
+font-family: "Roboto",sans-serif;
+font-size: 24px !important;
+font-weight: 400;
+font-style: italic;
+text-transform: capitalize;
+}
+.template-btn {
+color: #131230;
+background: #ffb606;
+font-family: "Roboto",sans-serif;
+text-transform: uppercase;
+font-size: 14px;
+font-weight: 500;
+border: 1px solid transparent;
+display: inline-block;
+padding: 12px 30px !important;
+-webkit-transition: all .5s;
+-moz-transition: all .5s;
+-o-transition: all .5s;
+transition: all 0.5s;
+}
 
-/* love animation*/
+.food-area {
+background-image: url(./images/food-bg.png);
+background-repeat: no-repeat;
+background-position: top right;
+position: relative;
+}
 
-#heart{
-	display:block;
-	width:50px;
-	height:50px;
-	background:rgba(120, 120, 120,1) url("/img/love-icon.png") center no-repeat;
-	/* <!--background:rgba(120, 120, 120,1) {% static 'home/love.png' %} center no-repeat;--> */
-
-	background-size:100%;
-	border-radius:50%;
-	position:relative;
-	margin-top:-25px;
-	box-shadow:0 0 0 0px #FED650;
-	transition:all 0.4s cubic-bezier(0.64, 0.57, 0.67, 1.53), background-color 0.4s linear
-  }
-  #heart:hover{
-	animation:beat 1s infinite
-  }
-  #heart.loved{
-	background-color:#FED650;
-	box-shadow:0 0 0 5px #FED650;
-	transform:rotate(-3deg);
-	animation: none
-  }
-  #heart .ray{
-	width:60px;
-	height:8px;
-	left:26px;
-	top:17px;
-	background:rgba(0,0,0,0);
-	border-radius:4px;
-	position:absolute;
-	transform:rotate(0deg);
-	transform-origin: 0% 50%;
-	transition:all 0.1s linear;
-	overflow:hidden;
-	text-align:right;
-	pointer-events:none
-  }
-  #heart .ray:before{
-	content:"";
-	position:absolute;
-	top:0;
-	right:10%;
-	display:block;
-	width:50%;
-	border-radius:4px;
-	height:8px;
-	background:rgba(247, 40, 109,0)
-  }
-  #heart .ray:nth-of-type(2){
-	transform:rotate(45deg);
-  }
-  #heart .ray:nth-of-type(3){
-	transform:rotate(90deg);
-  }
-  #heart .ray:nth-of-type(4){
-	transform:rotate(135deg);
-  }
-  #heart .ray:nth-of-type(5){
-	transform:rotate(180deg);
-  }
-  #heart .ray:nth-of-type(6){
-	transform:rotate(225deg);
-  }
-  #heart .ray:nth-of-type(7){
-	transform:rotate(270deg);
-  }
-  #heart .ray:nth-of-type(8){
-	transform:rotate(315deg);
-  }
-  #heart.loved .ray{
-	width:60px
-  }
-  #heart.loved .ray:before{
-	width:10%;
-	right:-10%;
-	background:#FED650;
-	/* background:rgba(247, 40, 109,1); */
-	transition:all 0.4s cubic-bezier(0.085, 0.890, 0.600, 0.115)
-  }
-
-  @keyframes beat{
-	0%{ opacity:0.5}
-	80%,100%{ opacity:0.9}
-  }
+.banner-area2:after {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(1,7,16,0.7);
+z-index: -1;
+}

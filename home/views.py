@@ -144,27 +144,65 @@ def tryout(request):
 
     print(recommended_recipes)
 
+    dynamoDB=boto3.resource('dynamodb')
+    dynamoTable=dynamoDB.Table('recipe')
+
+    fst_spl = [178, 155, 169, 152]
+    a=[]
+    b=[]
+    c=[]
+    d=[]
+
+    for i in recommended_recipes:
+        response = dynamoTable.scan(
+            FilterExpression=Attr('R_id').eq(int(i))
+        )
+        tp = []
+        img =response['Items'][0]['Imglink']
+        name =response['Items'][0]['name']
+        tp.append(img)
+        tp.append(name)
+        a.append(tp)
+
+    for i in most_famous:
+        response = dynamoTable.scan(
+            FilterExpression=Attr('R_id').eq(int(i))
+        )
+        tp = []
+        img =response['Items'][0]['Imglink']
+        name =response['Items'][0]['name']
+        tp.append(img)
+        tp.append(name)
+        b.append(tp)
+
+    for i in trending:
+        response = dynamoTable.scan(
+            FilterExpression=Attr('R_id').eq(int(i))
+        )
+        tp = []
+        img =response['Items'][0]['Imglink']
+        name =response['Items'][0]['name']
+        tp.append(img)
+        tp.append(name)
+        c.append(tp)
+
+    for i in fst_spl:
+        response = dynamoTable.scan(
+            FilterExpression=Attr('R_id').eq(int(i))
+        )
+        tp = []
+        img =response['Items'][0]['Imglink']
+        name =response['Items'][0]['name']
+        tp.append(img)
+        tp.append(name)
+        d.append(tp)
+
     ### ACROSS FORUMS ###
-
-    # across_forums = []
-    #
-    # dynamoDB = boto3.resource('dynamodb')
-    # dynamoTable = dynamoDB.Table('forum')
-    # response = dynamoTable.scan()
-    #
-    # count = len(response['Items'])
-    #
-    # for i in range(0,4):
-
-
-    #####################
-
-    #############################
-
     data = {'data':zip(name,imglink,rid),
-            'trending':trending,
-            'recommended_recipes':recommended_recipes,
-            'most_famous':most_famous}
+            'trending':c,
+            'recommended_recipes':a,
+            'most_famous':b,
+            'festival_splecial':d}
 
     return render(request, 'home/tryout.html', data)
 
