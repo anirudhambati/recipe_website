@@ -13,6 +13,8 @@ urlpatterns = [
     path('base', views.base, name='base'),
     path('findchefs', views.findchefs, name='find'),
     path('contact', views.contact, name='contact'),
+    path('cont', views.cont, name='cont'),
+
 
 
 ]

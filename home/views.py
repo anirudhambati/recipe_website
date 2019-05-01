@@ -116,7 +116,6 @@ def tryout(request):
 
     for a in range(0, n):
         for j in range(0, n-a-1):
-            print(n-a-1)
             if sim[j] > sim[j+1]:
                 sim[j], sim[j+1] = sim[j+1], sim[j]
                 temp_r[j], temp_r[j+1] = temp_r[j+1], temp_r[j]
@@ -146,18 +145,18 @@ def tryout(request):
     print(recommended_recipes)
 
     ### ACROSS FORUMS ###
-'''
-    across_forums = []
 
-    dynamoDB = boto3.resource('dynamodb')
-    dynamoTable = dynamoDB.Table('forum')
-    response = dynamoTable.scan()
+    # across_forums = []
+    #
+    # dynamoDB = boto3.resource('dynamodb')
+    # dynamoTable = dynamoDB.Table('forum')
+    # response = dynamoTable.scan()
+    #
+    # count = len(response['Items'])
+    #
+    # for i in range(0,4):
 
-    count = len(response['Items'])
 
-    for i in range(0,4):
-
-'''
     #####################
 
     #############################
@@ -369,3 +368,6 @@ def search(request):
 
 def contact(request):
     return render(request,'home/contact.html')
+
+def cont(request):
+    return render(request,'home/cont.html')
