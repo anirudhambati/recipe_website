@@ -348,7 +348,7 @@ def registered(request):
     last = request.POST['Last']
     email = request.POST['email']
     password = request.POST['password']
-    uname=last+first
+    uname=request.POST['username']
     dynamoDB = boto3.resource('dynamodb')
     dynamoTable = dynamoDB.Table('Users')
     fe = Attr('email').eq(email)

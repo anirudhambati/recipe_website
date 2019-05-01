@@ -1,6 +1,6 @@
 {% extends 'home/base.html' %}
 {% load static from staticfiles %}
-
+{% block title %} Home {% endblock %}
 
 {% block extrahead %}
   <style type="text/css">
@@ -38,6 +38,9 @@
       body{
         background-color: white !important;
       }
+      .section-padding {
+        padding: 130px 0;
+    }
     </style>
 
 
@@ -57,11 +60,11 @@
                                 <hr class="hr-dark">
                                 <h4 class="subtext-header mt-2 mb-2">If more of us valued food and cheer and song above hoarded gold, it would be a merrier world</h4>
                                 <h4 class="mb-5"> </h4>
-                            </div>
-                            <a href="{% url 'home:register' %}" class="btn btn-yellow btn-rounded wow fadeInUp" data-wow-delay="0.2s">
+                            </div><!--
+                            <a href="{% url 'home:tryout' %}" class="btn btn-yellow btn-rounded wow fadeInUp" data-wow-delay="0.2s">
                                 <i class="far fa-calendar-alt mr-2"></i>
                                 <span> Explore Now</span>
-                            </a>
+                            </a>-->
                         </div>
                     </div>
                 </div>
@@ -128,8 +131,9 @@
         <!--/First container-->
 
         <!--Streak-->
+
         <div class="streak streak-photo streak-md" style="background-image: url('https://mdbootstrap.com/img/Others/food31.jpg');">
-            <div class="flex-center mask rgba-black-strong">
+            <div class="flex-center mask rgba-black-strong" style="padding:100px 0px">
                 <div class="text-center white-text">
                     <h2 class="h2-responsive mb-5">
                         <i class="fas fa-quote-left" aria-hidden="true"></i> Food for the body is not enough. There must be food for the soul.
@@ -139,6 +143,7 @@
                 </div>
             </div>
         </div>
+
         <!--/Streak-->
 
         <!--Second container-->
@@ -174,7 +179,7 @@
 
                         <!--Menu button-->
                         <div class="text-center mb-2 mt-2">
-                            <a href="{% url 'home:register' %}" data-offset="100" class="btn btn btn-outline-grey btn-rounded waves-effect">
+                            <a href="{% url 'home:tryout' %}" data-offset="100" class="btn btn btn-outline-grey btn-rounded waves-effect">
                                 <strong>Start Exploring</strong>
                             </a>
                         </div>
@@ -327,7 +332,7 @@
 
         <!--Streak-->
         <div class="streak streak-photo streak-long-2" style="background-image:url('https://mdbootstrap.com/img/Others/food5.jpg')">
-            <div class="mask flex-center rgba-black-strong">
+            <div class="mask flex-center rgba-black-strong " style="padding:50px 0px">
                 <div class="container">
 
                     <h2 class="text-center text-white mb-5 text-uppercase font-weight-bold wow fadeIn" data-wow-delay="0.2s">Great people trusted our services</h2>
@@ -477,37 +482,69 @@
 
                             <figure class="col-md-4">
                                 <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(40).jpg" data-size="1600x1067">
+                                  <div class="view overlay">
                                     <img src="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(40).jpg" class="img-fluid z-depth-1-half">
+                                      <div class="mask flex-center rgba-grey-strong">
+                                          <h3 class="white-text">French</h3>
+                                      </div>
+                                  </div>
+
                                 </a>
                             </figure>
 
                             <figure class="col-md-4">
                                 <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(48).jpg" data-size="1600x1067">
+                                  <div class="view overlay">
                                     <img src="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(48).jpg" class="img-fluid z-depth-1-half">
+                                      <div class="mask flex-center rgba-grey-strong">
+                                          <h3 class="white-text">Mexican</h3>
+                                      </div>
+                                  </div>
                                 </a>
                             </figure>
 
                             <figure class="col-md-4">
                                 <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(42).jpg" data-size="1600x1067">
+                                  <div class="view overlay">
                                     <img src="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(42).jpg" class="img-fluid z-depth-1-half">
+                                      <div class="mask flex-center rgba-grey-strong">
+                                          <h3 class="white-text">Italian</h3>
+                                      </div>
+                                  </div>
                                 </a>
 
                             </figure>
                             <figure class="col-md-4">
                                 <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(44).jpg" data-size="1600x1067">
+                                  <div class="view overlay">
                                     <img src="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(44).jpg" class="img-fluid z-depth-1-half">
+                                      <div class="mask flex-center rgba-grey-strong">
+                                          <h3 class="white-text">Europian</h3>
+                                      </div>
+                                  </div>
                                 </a>
                             </figure>
 
                             <figure class="col-md-4">
                                 <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(41).jpg" data-size="1600x1067">
+                                  <div class="view overlay">
                                     <img src="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(41).jpg" class="img-fluid z-depth-1-half">
+                                      <div class="mask flex-center rgba-grey-strong">
+                                          <h3 class="white-text">Continental</h3>
+                                      </div>
+                                  </div>
+
                                 </a>
                             </figure>
 
                             <figure class="col-md-4">
                                 <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(47).jpg" data-size="1600x1067">
+                                  <div class="view overlay">
                                     <img src="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(47).jpg" class="img-fluid z-depth-1-half">
+                                      <div class="mask flex-center rgba-grey-strong">
+                                          <h3 class="white-text">Asian</h3>
+                                      </div>
+                                  </div>
                                 </a>
                             </figure>
 
