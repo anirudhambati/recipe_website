@@ -418,3 +418,58 @@ def contact(request):
 
 def cont(request):
     return render(request,'home/cont.html')
+
+def diet(request):
+    id=request.session['uid']
+    dynamoDB=boto3.resource('dynamodb')
+    dynamoTable=dynamoDB.Table('Users')
+    fe = Attr('U_id').eq(id)
+    scan=dynamoTable.scan(FilterExpression=fe)
+    print(scan['Items'])
+    d_id=scan['Items'][0]['D_id']
+    d_id=str(d_id)
+    print(d_id)
+    return render(request,'home/diet.html',{'d_id':d_id})
+
+def select(request,id_1):
+    id=request.session['uid']
+    dynamoDB=boto3.resource('dynamodb')
+    dynamoTable=dynamoDB.Table('Users')
+    fe = Attr('U_id').eq(id)
+    scan=dynamoTable.scan(FilterExpression=fe)
+    print(scan['Items'][0]['D_id'])
+    x=scan['Items'][0]['D_id']
+
+
+    if int(id_1)>3:
+        d_id=5
+        x=0
+
+    elif x==id_1:
+        d_id=x
+    else:
+        x=id_1
+        d_id = x
+    dynamoDB=boto3.resource('dynamodb')
+    dynamoTable=dynamoDB.Table('Users')
+    fe = Attr('U_id').eq(id)
+    scan=dynamoTable.scan(FilterExpression=fe)
+
+    dynamoTable.put_item(
+    Item={
+        'U_id':scan['Items'][0]['U_id'],
+        'fname':scan['Items'][0]['fname'],
+        'lname':scan['Items'][0]['lname'],
+        'uname':scan['Items'][0]['uname'],
+        'email':scan['Items'][0]['email'],
+        'password':scan['Items'][0]['password'],
+        'lat':scan['Items'][0]['lat'],
+        'long':scan['Items'][0]['long'],
+        'followers':0,
+        'following':[],
+        'D_id':x
+    }
+    )
+
+
+    return render(request,'home/diet.html',{'d_id':d_id})

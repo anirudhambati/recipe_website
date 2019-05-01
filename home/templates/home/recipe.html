@@ -1,4 +1,4 @@
-{% extends 'home/base.html' %}
+{% extends 'home/base1.html' %}
 {% load static from staticfiles %}
 
 {% block extrahead %}
@@ -88,8 +88,8 @@
 
     {% for i,j in steps %}
 
-    <div class="row {{i}}" >
-      <div class="col col-6 mr-auto dot">
+    <div class="row " >
+      <div class="col col-6 mr-auto dot {{i}} steps">
         <h2>Step {{ i }}</h2>
         <p>{{ j }}</p>
       </div>
@@ -187,4 +187,20 @@
 
 <br><br><br><br><br><br><br>
 
+{% endblock %}
+
+{% block script %}
+<script >
+$(document).ready(function(){
+  var i = $("#steps").length;
+
+  for(var j=0;j<i;j=j+2){
+    var x = "."+j
+    $(x).removeClass("mr-auto");
+    $(x).removeClass("dot");
+    $(x).addClass("ml-auto");
+    console.log(j)
+  }
+});
+</script>
 {% endblock %}
