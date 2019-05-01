@@ -403,3 +403,9 @@ def login(request):
 
 def search(request):
     return render(request,'search/search.html')
+
+def contact(request):
+    return render(request,'home/contact.html')
+
+def cont(request):
+    return render(request,'home/cont.html')
