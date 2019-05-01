@@ -1,21 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+
 {% extends 'home/base1.html' %}
 
 {% load static from staticfiles %}
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Material Design Bootstrap</title>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-     <!-- Bootstrap core CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.4/css/mdb.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/contact.css">
+  {% block extrahead %}
+
+
 	<style>
 	  .section-padding {
     padding: 130px 0;
@@ -52,7 +42,7 @@
 }
 .banner-area2 {
     padding: 210px 0 160px;
-    background-image: {% static 'home/contact-bg.jpg' %} ;
+    background-image: url('{% static 'home/contact-bg.jpg' %}') ;
 	background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -78,7 +68,8 @@
     font-style: italic;
 }
 	</style>
-</head>
+{% endblock %}
+
 
 
 {% block body %}
@@ -225,7 +216,3 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.4/js/mdb.min.js"></script>
 
 {% endblock %}
-
-
-
-</html>

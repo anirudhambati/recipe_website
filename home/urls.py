@@ -14,7 +14,6 @@ urlpatterns = [
     path('findchefs', views.findchefs, name='find'),
     path('contact', views.contact, name='contact'),
     path('cont', views.cont, name='cont'),
-
-
-
+    path('diet', views.diet, name='diet'),
+    path('select/<id_1>', views.select, name='select'),
 ]
