@@ -108,6 +108,7 @@ def tryout(request):
 
     for a in range(0, n):
         for j in range(0, n-a-1):
+            print(n-a-1)
             if sim[j] > sim[j+1]:
                 sim[j], sim[j+1] = sim[j+1], sim[j]
                 temp_r[j], temp_r[j+1] = temp_r[j+1], temp_r[j]
@@ -315,3 +316,6 @@ def login(request):
 
 def search(request):
     return render(request,'search/search.html')
+
+def contact(request):
+    return render(request,'home/contact.html')
