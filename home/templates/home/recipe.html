@@ -89,7 +89,7 @@
     {% for i,j in steps %}
 
     <div class="row " >
-      <div class="col col-6 mr-auto dot {{i}} steps">
+      <div class="col col-6 mr-auto dot steps {{i}}">
         <h2>Step {{ i }}</h2>
         <p>{{ j }}</p>
       </div>
@@ -192,7 +192,7 @@
 {% block script %}
 <script >
 $(document).ready(function(){
-  var i = $("#steps").length;
+  var i = $(".steps").length;
 
   for(var j=0;j<i;j=j+2){
     var x = "."+j

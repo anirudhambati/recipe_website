@@ -1,5 +1,6 @@
-{% extends 'home/base1.html' %}
+{% extends 'home/base2.html' %}
 {% load static from staticfiles %}
+{% block title%}explore{% endblock %}
 {% block extrahead %}
 <style>
 	  .section-padding {
@@ -97,7 +98,16 @@ float:left;
 
 
 <div class="container sec-card">
-
+	<form method="post" enctype="multipart/form-data" action="insert">
+    {% csrf_token %}
+    <input type="text" id="myInput" name="recipe" onkeyup="myFunction()" placeholder="Search recipe">
+    <input type="submit" id="Serc" value="Search" >
+    <ul id="myUL">
+      {%for item in names%}
+      <li style='display: none'  ><a href="#" id="{{item.id}}" onclick="update({{item.id}})">{{item.value}}</a></li>
+      {%endfor%}
+  </ul>
+</form>
   <h2 class="text-center text-heading">TRENDING RECIPES</h2>
 
   <div class="row">
@@ -254,5 +264,35 @@ float:left;
 </div>
 
 
+<script>
+  function myFunction() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById('myInput');
+
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName('li');
+    for (i = 0; i < li.length; i++) {
+      a = li[i].getElementsByTagName("a")[0];
+      txtValue = a.textContent || a.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        li[i].style.display = "";
+      } else {
+        li[i].style.display = "none";
+      }
+    }
+  if(input.value == ""){
+    for (i = 0; i < li.length; i++) {
+      li[i].style.display = "none";
+    }
+  }
+  }
+  function update(i){
+      var block = document.getElementById(i);
+      var inputVal=document.getElementById("myInput");
+      var val = block.innerHTML;
+      inputVal.value = val;
+  }
+  </script>
 
 {% endblock %}

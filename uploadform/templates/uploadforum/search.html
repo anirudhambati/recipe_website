@@ -141,37 +141,37 @@
 
   <!--Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #37703d">
-    <a class="navbar-brand" href="#">FoodE</a>
+    <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
       aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="{% url 'home:home' %}">Home
-
-          </a>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home:tryout' %}">Explore</a>
+          <span class="sr-only">(current)</span>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'home:contact' %}">Contact us</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'home:register' %}">Login/Register</a>
+          <a class="nav-link" href="{% url 'uploadform:forum-home' %}">Upload Form</a>
         </li>
 
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">
-            <i class="fas fa-user"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-            <a class="dropdown-item" href="#">My Account</a>
-            <a class="dropdown-item" href="#">Liked recipes</a>
-            <a class="dropdown-item" href="#">Logout</a>
-          </div>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'forum:forum' %}">Forum</a>
         </li>
-      </ul>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'uploadform:search' %}">Search</a>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home:cont' %}">Contact us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home:home' %}">Logout</a>
+        </li>
+            </ul>
     </div>
   </nav>
   <!--/.Navbar -->

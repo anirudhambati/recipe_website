@@ -205,14 +205,29 @@ def tryout(request):
         tp.append(rr)
         d.append(tp)
 
+    a1=[]
+    dynamoDB=boto3.resource('dynamodb')
+    dynamoTable=dynamoDB.Table('recipe')
+    scan=dynamoTable.scan()
+    for i in scan["Items"]:
+        a1.append(i['name'])
+
+    d1 = []
+    for x in range(len(a1)):
+        b1 = {}
+        b1['id'] = x
+        b1['value'] = a1[x]
+        d1.append(b1)
 
     ### ACROSS FORUMS ###
     data = {'data':zip(name,imglink,rid),
             'trending':c,
             'recommended_recipes':a,
             'most_famous':b,
-            'festival_special':d}
-    print(c)
+            'festival_splecial':d,
+            'names':d1
+            }
+
     return render(request, 'home/tryout.html', data)
 
 
@@ -421,24 +436,71 @@ def cont(request):
 
 def diet(request):
     id=request.session['uid']
+    print(id)
     dynamoDB=boto3.resource('dynamodb')
     dynamoTable=dynamoDB.Table('Users')
     fe = Attr('U_id').eq(id)
     scan=dynamoTable.scan(FilterExpression=fe)
     print(scan['Items'])
     d_id=scan['Items'][0]['D_id']
-    d_id=str(d_id)
     print(d_id)
-    return render(request,'home/diet.html',{'d_id':d_id})
+    d_id=int(d_id)
+    d_id=0
+    r_id=[]
+    if(d_id==0):
+        r_id=[]
+    else:
+        r_id=[139,140,153,155]
+
+    name=[]
+    link=[]
+
+    rid=[]
+    d_id=str(d_id)
+    print('aaa')
+    print(r_id)
+    for id in r_id:
+        dynamoDB=boto3.resource('dynamodb')
+        dynamoTable=dynamoDB.Table('recipe')
+        fe = Attr('R_id').eq(id)
+        scan=dynamoTable.scan(FilterExpression=fe)
+        print(scan['Items'])
+        print('aaaa')
+        name.append(scan['Items'][0]['name'])
+        link.append(scan['Items'][0]['Imglink'])
+        rid.append(scan['Items'][0]['R_id'])
+    data=zip(name,link,rid)
+    print(name)
+    return render(request,'home/diet.html',{'d_id':d_id,'data':data})
 
 def select(request,id_1):
-    id=request.session['uid']
-    dynamoDB=boto3.resource('dynamodb')
-    dynamoTable=dynamoDB.Table('Users')
-    fe = Attr('U_id').eq(id)
-    scan=dynamoTable.scan(FilterExpression=fe)
-    print(scan['Items'][0]['D_id'])
-    x=scan['Items'][0]['D_id']
+    # id=request.session['uid']
+    # dynamoDB=boto3.resource('dynamodb')
+    # dynamoTable=dynamoDB.Table('Users')
+    # fe = Attr('U_id').eq(id)
+    # scan=dynamoTable.scan(FilterExpression=fe)
+    # print(scan['Items'][0]['D_id'])
+    # x=scan['Items'][0]['D_id']
+
+    x=0
+    r_id=[25,30,75]
+
+    name=[]
+    link=[]
+    rid=[]
+    print('aaa')
+    print(r_id)
+    for i in r_id:
+        dynamoDB=boto3.resource('dynamodb')
+        dynamoTable=dynamoDB.Table('recipe')
+        fe = Attr('R_id').eq(i)
+        scan=dynamoTable.scan(FilterExpression=fe)
+        print(scan['Items'])
+        print('aaaa')
+        name.append(scan['Items'][0]['name'])
+        link.append(scan['Items'][0]['Imglink'])
+        rid.append(scan['Items'][0]['R_id'])
+    data=zip(name,link,rid)
 
 
     if int(id_1)>3:
@@ -472,4 +534,22 @@ def select(request,id_1):
     )
 
 
-    return render(request,'home/diet.html',{'d_id':d_id})
+    return render(request,'home/diet.html',{'d_id':d_id,'data':data})
+def insert(request):
+    if request.method == "POST":
+        recipe = request.POST.getlist('recipe')
+        print("\nrecipe:",recipe)
+    dynamoDB=boto3.resource('dynamodb')
+    dynamoTable=dynamoDB.Table('recipe')
+    fe = Attr('name').eq(recipe[0])
+    response=dynamoTable.scan(FilterExpression=fe)
+    print(response['Items'])
+    name=[]
+    link=[]
+    rid=[]
+    for i in response['Items']:
+        name.append(i['name'])
+        link.append(i['Imglink'])
+        rid.append(i['R_id'])
+    data=zip(name,link,rid)
+    return render(request,'home/disp.html',{'data':data})
