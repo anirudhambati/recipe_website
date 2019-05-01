@@ -58,19 +58,7 @@ a .liked{
 	margin-top: -25px;
 }
 
-.post{
-	width:262.52px;
-	height:300px;
-	float:left;
-}
-.img-post{
-	width:262.52px;
-	height: 210px;
-	object-fit: cover;
-}
-.post-txt{
-	height: 59px;
-}
+
 
 .section-padding {
 padding: 130px 0;

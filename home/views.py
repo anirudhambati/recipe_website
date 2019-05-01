@@ -148,10 +148,10 @@ def tryout(request):
     dynamoTable=dynamoDB.Table('recipe')
 
     fst_spl = [178, 155, 169, 152]
-    a=[]
-    b=[]
-    c=[]
-    d=[]
+    a=[]#8
+    b=[]#8
+    c=[]#4
+    d=[]#4
 
     for i in recommended_recipes:
         response = dynamoTable.scan(
@@ -160,8 +160,10 @@ def tryout(request):
         tp = []
         img =response['Items'][0]['Imglink']
         name =response['Items'][0]['name']
+        rr = response['Items'][0]['R_id']
         tp.append(img)
         tp.append(name)
+        tp.append(rr)
         a.append(tp)
 
     for i in most_famous:
@@ -171,8 +173,10 @@ def tryout(request):
         tp = []
         img =response['Items'][0]['Imglink']
         name =response['Items'][0]['name']
+        rr = response['Items'][0]['R_id']
         tp.append(img)
         tp.append(name)
+        tp.append(rr)
         b.append(tp)
 
     for i in trending:
@@ -182,8 +186,10 @@ def tryout(request):
         tp = []
         img =response['Items'][0]['Imglink']
         name =response['Items'][0]['name']
+        rr = response['Items'][0]['R_id']
         tp.append(img)
         tp.append(name)
+        tp.append(rr)
         c.append(tp)
 
     for i in fst_spl:
@@ -193,17 +199,20 @@ def tryout(request):
         tp = []
         img =response['Items'][0]['Imglink']
         name =response['Items'][0]['name']
+        rr = response['Items'][0]['R_id']
         tp.append(img)
         tp.append(name)
+        tp.append(rr)
         d.append(tp)
+
 
     ### ACROSS FORUMS ###
     data = {'data':zip(name,imglink,rid),
             'trending':c,
             'recommended_recipes':a,
             'most_famous':b,
-            'festival_splecial':d}
-
+            'festival_special':d}
+    print(c)
     return render(request, 'home/tryout.html', data)
 
 
